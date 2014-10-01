@@ -1,3 +1,6 @@
+[submodule ".xmonad"]
+	path = .xmonad
+	url = git@github.com:CestDiego/xmonad-ubuntu.git
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = git@github.com:CestDiego/.emacs.d.git
