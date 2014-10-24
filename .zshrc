@@ -81,6 +81,7 @@ alias ohmyzsh="vim ~/.oh-my-zsh"
 alias zshsrc="source ~/.zshrc"
 
 alias plz='eval sudo "$(fc -nl -1)"'
+alias search='ps aux | grep '
 alias sudo="sudo "
 
 alias ec="emacsclient -n"
@@ -94,6 +95,7 @@ alias newicon="gnome-desktop-item-edit Desktop --create-new"
 alias mkvirtualenv2="mkvirtualenv -p /usr/bin/python2.7"
 alias ls='ls --color=auto'
 
+alias nethack='telnet nethack.alt.org'
 alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
 alias yolo='sudo apt-get update && sudo apt-get dist-upgrade -y'
 
@@ -121,7 +123,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 ########################################
 export PATH="$PATH:$HOME/.rvm/bin:$HOME/.node/bin"
 export PATH="$PATH:$HOME/.installed/android-studio/sdk/platform-tools:$HOME/.installed/android-studio/sdk/tools:$HOME/.installed/android-studio/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/.installed/genymotion/"
+export PATH="$PATH:$HOME/genymotion/"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:$HOME/.node/lib/node_modules:$HOME/node_modules
 
 export PATH="$PATH:$HOME/.installed/ndk"
@@ -129,4 +131,9 @@ export PATH="$PATH:$HOME/.installed/ndk"
 export PATH="$PATH:$HOME/.installed/subuser/bin:$HOME/.cask/bin"
 export SBCL_HOME=~/.installed/lisp/sbcl/lib/sbcl
 source ~/.rvm/scripts/rvm
-ur_setup
+
+
+#########################################3vim
+function sano {
+    mplayer -really-quiet "http://translate.google.com/translate_tts?tl=es&q=$1";
+}
