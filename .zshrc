@@ -91,8 +91,6 @@ alias ecc="emacsclient -nc"
 alias sleeptight="sudo shutdown -r now"
 alias this="nautilus ."
 alias show="google-chrome-stable "
-alias newicon="gnome-desktop-item-edit Desktop --create-new"
-alias mkvirtualenv2="mkvirtualenv -p /usr/bin/python2.7"
 alias ls='ls --color=auto'
 
 alias nethack='telnet nethack.alt.org'
