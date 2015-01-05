@@ -45,14 +45,18 @@ ZSH_THEME="duellj"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z zsh-syntax-highlighting history-substring-search)
+plugins=(git mix z zsh-syntax-highlighting history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -95,7 +99,7 @@ alias ls='ls --color=auto'
 
 alias nethack='telnet nethack.alt.org'
 alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
-alias yolo='sudo apt-get update && sudo apt-get dist-upgrade -y'
+alias asdf='sudo apt-get update && sudo apt-get dist-upgrade -y'
 
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
@@ -129,6 +133,8 @@ export PATH="$PATH:$HOME/.installed/ndk"
 export PATH="$PATH:$HOME/.installed/subuser/bin:$HOME/.cask/bin"
 export SBCL_HOME=~/.installed/lisp/sbcl/lib/sbcl
 source ~/.rvm/scripts/rvm
+
+export TRAVIS_TOKEN="EeHNkn8V1kKeYi2SqCx1"
 
 
 #########################################3vim
