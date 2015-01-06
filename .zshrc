@@ -101,6 +101,10 @@ alias nethack='telnet nethack.alt.org'
 alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
 alias asdf='sudo apt-get update && sudo apt-get dist-upgrade -y'
 
+##### SSH SESSIONS!! YEAAAH
+alias hackspace='ssh core-beja'
+alias gmat='ssh gmat'
+
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
 }
