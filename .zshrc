@@ -134,7 +134,7 @@ export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:$HO
 
 export PATH="$PATH:$HOME/.installed/ndk"
 
-export PATH="$PATH:$HOME/.installed/subuser/bin:$HOME/.cask/bin"
+export PATH="$PATH:$HOME/.installed/:$HOME/.cask/bin:$HOME/.cabal/bin"
 export SBCL_HOME=~/.installed/lisp/sbcl/lib/sbcl
 source ~/.rvm/scripts/rvm
 
@@ -144,4 +144,41 @@ export TRAVIS_TOKEN="EeHNkn8V1kKeYi2SqCx1"
 #########################################3vim
 function sano {
     mplayer -really-quiet "http://translate.google.com/translate_tts?tl=es&q=$1";
+}
+
+function hmake {
+   let EXAMPLE_NUMBER=`pwd | rev | cut -d '/' -f 1 | rev | cut -c 1-3` # Third must be a number, so 00x_whatever_example Must escalate
+   if [ $EXAMPLE_NAME ]; then
+       case $EXAMPLE_NAME in
+           1)
+               statement ;;
+           2)
+               statement ;;
+           3)
+               statement ;;
+           4)
+               statement ;;
+           5)
+               statement ;;
+
+       esac
+       
+   else
+       echo "This is a horton specific function which builds the profiles for the examples in the /data directory"
+       echo "You have to be in the horton examples directory for this command to work"    
+   fi
+}
+
+function hrun {
+    if [ ! -d $1 ]; then
+        mkdir $1
+    fi
+    python -m cProfile -o $1/$2.pstats $1.py 2>&1 | tee $1/$2.log
+    gprof2dot -f pstats $1/$2.pstats | dot -Tpng -o $1/$2.png
+}
+
+function hclear {
+    if [ ! -d $1 ]; then
+        rm $1/$2.pstats $1/$2.log $1/$2.png
+    fi
 }
