@@ -72,7 +72,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 export EDITOR='emacsclient -c'
 
@@ -99,11 +99,20 @@ alias ls='ls --color=auto'
 
 alias nethack='telnet nethack.alt.org'
 alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
-alias asdf='sudo apt-get update && sudo apt-get dist-upgrade -y'
+alias asdf='sudo apt-get update && sudo apt-get upgrade -y'
 
 ##### SSH SESSIONS!! YEAAAH
 alias hackspace='ssh core-beja'
 alias gmat='ssh gmat'
+
+##### Alias for Computing Canada SHARCNET servers!
+alias requin='ssh -Y -i ~/.ssh/id_rsa diego@requin.sharcnet.ca'
+alias saw='ssh -Y -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa diego@saw.sharcnet.ca'
+alias orca='ssh -Y -i ~/.ssh/id_rsa diego@orca.sharcnet.ca'
+alias bramble='ssh -Y -i ~/.ssh/id_rsa diego@bramble.sharcnet.ca'
+alias kraken='ssh -Y -i ~/.ssh/id_rsa diego@kraken.sharcnet.ca'
+alias scinet='ssh -l diego login.scinet.utoronto.ca'
+alias wobbie='ssh -Y -i ~/.ssh/id_rsa diego@wobbie.sharcnet.ca'
 
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
@@ -146,28 +155,6 @@ function sano {
     mplayer -really-quiet "http://translate.google.com/translate_tts?tl=es&q=$1";
 }
 
-function hmake {
-   let EXAMPLE_NUMBER=`pwd | rev | cut -d '/' -f 1 | rev | cut -c 1-3` # Third must be a number, so 00x_whatever_example Must escalate
-   if [ $EXAMPLE_NAME ]; then
-       case $EXAMPLE_NAME in
-           1)
-               statement ;;
-           2)
-               statement ;;
-           3)
-               statement ;;
-           4)
-               statement ;;
-           5)
-               statement ;;
-
-       esac
-       
-   else
-       echo "This is a horton specific function which builds the profiles for the examples in the /data directory"
-       echo "You have to be in the horton examples directory for this command to work"    
-   fi
-}
 
 function hrun {
     if [ ! -d $1 ]; then
@@ -181,4 +168,8 @@ function hclear {
     if [ ! -d $1 ]; then
         rm $1/$2.pstats $1/$2.log $1/$2.png
     fi
+}
+
+function sl(){
+    ((RANDOM%42)) && command sl || ls;
 }
