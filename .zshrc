@@ -19,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/Canopy/"
 # export MANPATH="/usr/local/man:$MANPATH"
-export PYTHONPATH=$PYTHONPATH:/home/io/Enthought/Canopy_64bit/User/lib/:/home/io/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/
+# export PYTHONPATH=$PYTHONPATH:/home/io/Enthought/Canopy_64bit/User/lib/:/home/io/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/
 
 export LD_LIBRARY_PATH=/usr/local/lib:~/Enthought/Canopy_64bit/User/lib/
 # Preferred editor for local and remote sessions
