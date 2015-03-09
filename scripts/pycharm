@@ -1,0 +1,2 @@
+#!/bin/sh
+/home/io/.installed/pycharm/bin/pycharm.sh &

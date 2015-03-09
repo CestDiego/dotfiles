@@ -17,11 +17,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/Canopy/"
-# export MANPATH="/usr/local/man:$MANPATH"
-# export PYTHONPATH=$PYTHONPATH:/home/io/Enthought/Canopy_64bit/User/lib/:/home/io/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/
+export PATH="$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 
-export LD_LIBRARY_PATH=/usr/local/lib:~/Enthought/Canopy_64bit/User/lib/
+export TERM="screen-256color"
+# export MANPATH="/usr/local/man:$MANPATH"
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -41,6 +41,10 @@ export EDITOR='emacsclient -c'
 ########### -ALIASES- ##################
 ########################################
 
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
 alias zshconfig="emacsclient -t ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias zshsrc="source ~/.zshrc"
@@ -49,8 +53,8 @@ alias plz='eval sudo "$(fc -nl -1)"'
 alias search='ps aux | grep '
 alias sudo="sudo "
 
-alias ec="emacsclient -n"
-alias ect="emacsclient -t"
+alias ec="emacsclient -n $@ || (emacs && emacsclient -n $@)"
+alias ect="emacsclient -t $@ || (emacs && emacsclient -t $@)"
 alias ecc="emacsclient -nc"
 
 alias sleeptight="sudo shutdown -r now"
@@ -91,22 +95,12 @@ ur_forget() {
 ###### -VIRTUALENVWRAPPER- #############
 ########################################
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
-source /usr/local/bin/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+export VIRTUALENVWRAPPER_PYTHON=$HOME/Enthought/Canopy_64bit/User/bin/python2.7
+# source /usr/local/bin/virtualenvwrapper.sh
+source ~/Enthought/Canopy_64bit/User/bin/virtualenvwrapper.sh
 
-########################################
-#### -END VIRTUALENVWRAPPER- ###########
-########################################
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.node/bin"
-export PATH="$PATH:$HOME/.installed/android-studio/sdk/platform-tools:$HOME/.installed/android-studio/sdk/tools:$HOME/.installed/android-studio/bin" # Add RVM to PATH for scripting
-export PATH="$PATH:$HOME/genymotion/"
-export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:$HOME/.node/lib/node_modules:$HOME/node_modules
-
-export PATH="$PATH:$HOME/.installed/ndk"
-
-export PATH="$PATH:$HOME/.installed/:$HOME/.cask/bin:$HOME/.cabal/bin"
-export SBCL_HOME=~/.installed/lisp/sbcl/lib/sbcl
-source ~/.rvm/scripts/rvm
+# source ~/.rvm/scripts/rvm
 
 export TRAVIS_TOKEN="EeHNkn8V1kKeYi2SqCx1"
 
@@ -114,21 +108,6 @@ export TRAVIS_TOKEN="EeHNkn8V1kKeYi2SqCx1"
 #########################################3vim
 function sano {
     mplayer -really-quiet "http://translate.google.com/translate_tts?tl=es&q=$1";
-}
-
-
-function hrun {
-    if [ ! -d $1 ]; then
-        mkdir $1
-    fi
-    python -m cProfile -o $1/$2.pstats $1.py 2>&1 | tee $1/$2.log
-    gprof2dot -f pstats $1/$2.pstats | dot -Tpng -o $1/$2.png
-}
-
-function hclear {
-    if [ ! -d $1 ]; then
-        rm $1/$2.pstats $1/$2.log $1/$2.png
-    fi
 }
 
 function sl(){
@@ -145,3 +124,7 @@ PANEL_HEIGHT=24
 PANEL_FONT_FAMILY="-adobe-Source Code Pro-bold-normal-normal-*-16-*-*-*-m-0-fontset-auto1"
 export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
 
+
+# Added by Canopy installer on 2015-02-27
+# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
+VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/io/Enthought/Canopy_64bit/User/bin/activate
