@@ -17,7 +17,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH"
+export PYTHONPATH="$HOME/horton"
+export HORTONDATA="$HOME/horton/data"
 
 export TERM="screen-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -53,8 +55,8 @@ alias plz='eval sudo "$(fc -nl -1)"'
 alias search='ps aux | grep '
 alias sudo="sudo "
 
-alias ec="emacsclient -n $@ || (emacs && emacsclient -n $@)"
-alias ect="emacsclient -t $@ || (emacs && emacsclient -t $@)"
+alias ec="emacsclient -n "
+alias ect="emacsclient -t "
 alias ecc="emacsclient -nc"
 
 alias sleeptight="sudo shutdown -r now"
@@ -78,6 +80,7 @@ alias bramble='ssh -Y -i ~/.ssh/id_rsa diego@bramble.sharcnet.ca'
 alias kraken='ssh -Y -i ~/.ssh/id_rsa diego@kraken.sharcnet.ca'
 alias scinet='ssh -l diego login.scinet.utoronto.ca'
 alias wobbie='ssh -Y -i ~/.ssh/id_rsa diego@wobbie.sharcnet.ca'
+alias viz8='ssh -Y -i ~/.ssh/id_rsa diego@viz8-uwo.sharcnet.ca'
 
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
@@ -95,10 +98,11 @@ ur_forget() {
 ###### -VIRTUALENVWRAPPER- #############
 ########################################
 export WORKON_HOME=$HOME/.virtualenvs
-# export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
-export VIRTUALENVWRAPPER_PYTHON=$HOME/Enthought/Canopy_64bit/User/bin/python2.7
-# source /usr/local/bin/virtualenvwrapper.sh
-source ~/Enthought/Canopy_64bit/User/bin/virtualenvwrapper.sh
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+source ~/.local/bin/virtualenvwrapper.sh
+
+# export VIRTUALENVWRAPPER_PYTHON=$HOME/Enthought/Canopy_64bit/User/bin/python2.7
+# source ~/Enthought/Canopy_64bit/User/bin/virtualenvwrapper.sh
 
 # source ~/.rvm/scripts/rvm
 
@@ -127,4 +131,6 @@ export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
 
 # Added by Canopy installer on 2015-02-27
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
-VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/io/Enthought/Canopy_64bit/User/bin/activate
+# VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/io/Enthought/Canopy_64bit/User/bin/activate
+
+# export PATH="/home/io/anaconda/bin:$PATH"
