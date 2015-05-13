@@ -18,10 +18,12 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH"
+export PATH="$PATH:/home/io/.installed/eclipse/"
 export PYTHONPATH="$HOME/horton"
+export NODE_PATH="$NODE_PATH:/home/io/.local/lib/node_modules"
 export HORTONDATA="$HOME/horton/data"
 
-export TERM="screen-256color"
+export TERM="rxvt-unicode-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions

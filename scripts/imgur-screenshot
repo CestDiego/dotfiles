@@ -2,13 +2,15 @@
 # https://github.com/jomo/imgur-screenshot
 # https://imgur.com/apps
 
+current_version="v1.5.4"
+
 function is_mac() {
   uname | grep -q "Darwin"
 }
 
 ### IMGUR-SCREENSHOT DEFAULT CONFIG ####
 
-imgur_anon_key="486690f872c678126a2c09a9e196ce1b"
+imgur_anon_id="9e603f08c0e541c"
 imgur_icon_path="$HOME/Pictures/imgur.png"
 
 imgur_acct_key=""
@@ -17,7 +19,7 @@ login="false"
 credentials_file="$HOME/.config/imgur-screenshot/credentials.conf"
 
 file_name_format="imgur-%Y_%m_%d-%H:%M:%S.png" # when using scrot, must end with .png!
-file_dir="$HOME/Pictures"
+file_dir="$HOME/Pictures/Screenshots"
 
 upload_connect_timeout="5"
 upload_timeout="120"
@@ -36,10 +38,12 @@ open="true"
 
 edit_command="gimp %img"
 edit="false"
+exit_on_selection_fail="true"
 edit_on_selection_fail="false"
 
 log_file="$HOME/.imgur-screenshot.log"
 
+auto_delete=""
 copy_url="true"
 keep_file="true"
 check_update="true"
@@ -52,7 +56,7 @@ if [ -f "$settings_path" ]; then
   source "$settings_path"
 fi
 
-# dependencie check
+# dependency check
 if [ "$1" = "--check" ]; then
   (which grep &>/dev/null && echo "OK: found grep") || echo "ERROR: grep not found"
   if is_mac; then
@@ -96,8 +100,8 @@ function take_screenshot() {
   echo "Please select area"
   is_mac || sleep 0.1 # https://bbs.archlinux.org/viewtopic.php?pid=1246173#p1246173
 
-  screenshot_select_command=${screenshot_select_command/\%img/$1}
-  screenshot_window_command=${screenshot_window_command/\%img/$1}
+  screenshot_select_command=${screenshot_select_command//\%img/$1}
+  screenshot_window_command=${screenshot_window_command//\%img/$1}
 
   shot_err="$($screenshot_select_command &>/dev/null)" #takes a screenshot with selection
   if [ "$?" != "0" ]; then
@@ -107,14 +111,18 @@ function take_screenshot() {
     else
       echo "$shot_err" >&2
       echo "Couldn't make selective shot (mouse trapped?)."
-      echo "Trying to grab active window instead."
-      if ! ($screenshot_window_command &>/dev/null); then
-        echo "Error for image '$1': '$shot_err'. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
-        notify error "Something went wrong :(" "Information has been logged"
+      if [ "$exit_on_selection_fail" = "false" ]; then
+        echo "Trying to grab active window instead."
+        if ! ($screenshot_window_command &>/dev/null); then
+          echo "Error for image '$1': '$shot_err'. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
+          notify error "Something went wrong :(" "Information has been logged"
+          exit 1
+        fi
+        if "$edit_on_selection_fail" = "true"; then
+          edit="true"
+        fi
+      else
         exit 1
-      fi
-      if "$edit_on_selection_fail" = "true"; then
-        edit="true"
       fi
     fi
   fi
@@ -122,13 +130,13 @@ function take_screenshot() {
 
 function check_for_update() {
   # exit non-zero on HTTP error, output only the body (no stats) but output errors, follow redirects, output everything to stdout
-  remote_version="$(curl -fsSL --stderr - https://raw.githubusercontent.com/jomo/imgur-screenshot/master/.version.txt)"
+  remote_version="$(curl --compressed -fsSL --stderr - "https://api.github.com/repos/jomo/imgur-screenshot/releases" | egrep -m 1 --color 'tag_name":\s*".*"' | cut -d '"' -f 4)"
   if [ "$?" -eq "0" ]; then
     if [ ! "$current_version" = "$remote_version" ] && [ ! -z "$current_version" ] && [ ! -z "$remote_version" ]; then
       echo "Update found!"
       echo "Version $remote_version is available (You have $current_version)"
       notify ok "Update found" "Version $remote_version is available (You have $current_version). https://github.com/jomo/imgur-screenshot"
-      echo "Check https://github.com/jomo/imgur-screenshot for more info."
+      echo "Check https://github.com/jomo/imgur-screenshot/releases/$remote_version for more info."
     elif [ -z "$current_version" ] || [ -z "$remote_version" ]; then
       echo "Invalid empty version string"
       echo "Current (local) version: '$current_version'"
@@ -145,7 +153,8 @@ function check_oauth2_client_secrets() {
   if [ -z "$imgur_acct_key" ] || [ -z "$imgur_secret" ]; then
     echo "In order to upload to your account, register a new application at:"
     echo "https://api.imgur.com/oauth2/addclient"
-    echo "Then, fill out the imgur_acct_key (client ID) and imgur_secret in your config."
+    echo "Select 'OAuth 2 authorization without a callback URL'"
+    echo "Then, set the imgur_acct_key (Client ID) and imgur_secret in your config."
     exit 1
   fi
 }
@@ -174,7 +183,9 @@ function acquire_access_token() {
   check_oauth2_client_secrets
   # prompt for a PIN
   authorize_url="https://api.imgur.com/oauth2/authorize?client_id=$imgur_acct_key&response_type=pin"
-  echo "Go to $authorize_url and grant access to this application."
+  echo "Go to"
+  echo "$authorize_url"
+  echo "and grant access to this application."
   read -p "Enter the PIN: " imgur_pin
 
   if [ -z "$imgur_pin" ]; then
@@ -183,7 +194,7 @@ function acquire_access_token() {
   fi
 
   # exchange the PIN for access token and refresh token
-  response="$(curl -fsSL --stderr - \
+  response="$(curl --compressed -fsSL --stderr - \
     -F "client_id=$imgur_acct_key" \
     -F "client_secret=$imgur_secret" \
     -F "grant_type=pin" \
@@ -195,7 +206,7 @@ function acquire_access_token() {
 function refresh_access_token() {
   check_oauth2_client_secrets
   # exchange the refresh token for access_token and refresh_token
-  response="$(curl -fsSL --stderr - -F "client_id=$imgur_acct_key" -F "client_secret=$imgur_secret" -F "grant_type=refresh_token" -F "refresh_token=$refresh_token" https://api.imgur.com/oauth2/token)"
+  response="$(curl --compressed -fsSL --stderr - -F "client_id=$imgur_acct_key" -F "client_secret=$imgur_secret" -F "grant_type=refresh_token" -F "refresh_token=$refresh_token" https://api.imgur.com/oauth2/token)"
   if [ ! "$?" -eq "0" ]; then
     # curl failed
     echo "Error: Couldn't get access token from 'https://api.imgur.com/oauth2/token'"
@@ -228,23 +239,44 @@ EOF
 }
 
 function fetch_account_info() {
-  response="$(curl -fsSL --stderr - -H "Authorization: Bearer $access_token" https://api.imgur.com/3/account/me.xml)"
-  account_url="$(echo "$response" | egrep -o "<url>.*</url>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-  echo "Connected to https://$account_url.imgur.com"
+  response="$(curl --compressed --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -H "Authorization: Bearer $access_token" https://api.imgur.com/3/account/me)"
+  if egrep -q '"success":\s*true' <<<"$response"; then
+    username="$(egrep -o '"url":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
+    echo "Logged in as $username."
+    echo "https://$username.imgur.com"
+  else
+    echo "Failed to fetch info: $response"
+  fi
+}
+
+function delete_image() {
+  response="$(curl --compressed -X DELETE  -fsSL --stderr - -H "Authorization: Client-ID $1" "https://api.imgur.com/3/image/$2")"
+  if egrep -q '"success":\s*true' <<<"$response"; then
+    echo "Image successfully deleted (delete hash: $2)." >> "$3"
+  else
+    echo "The Image could not be deleted: $response." >> "$3"
+  fi
 }
 
 function upload_authenticated_image() {
   echo "Uploading '$1'..."
-  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -F "image=@$1" -H "Authorization: Bearer $access_token" https://api.imgur.com/3/image.xml)"
-  # imgur response contains success="1" when successful
-  if [[ "$response" == *"success=\"1\""* ]]; then
-    # cutting the url from the xml response
-    img_url="$(echo "$response" | egrep -o "<link>.*</link>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-    deletehash="$(echo "$response" | egrep -o "<deletehash>.*</deletehash>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-    del_url="https://imgur.com/delete/$deletehash"
-    handle_upload_success "$img_url" "$del_url" "$1"
+  title="$(echo "$1" | rev | cut -d "/" -f 1 | cut -d "." -f 2- | rev)"
+  response="$(curl --compressed --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -F "title=$title" -F "image=@$1" -H "Authorization: Bearer $access_token" https://api.imgur.com/3/image)"
+  # JSON parser premium edition (not really)
+  if egrep -q '"success":\s*true' <<<"$response"; then
+    img_id="$(egrep -o '"id":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
+    img_ext="$(egrep -o '"link":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4 | rev | cut -d "." -f 1 | rev)" # "link" itself has ugly '\/' escaping and no https!
+    del_id="$(egrep -o '"deletehash":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
+
+    if [ ! -z "$auto_delete" ]; then
+      export -f delete_image
+      echo "Deleting image in $auto_delete seconds."
+      nohup /bin/bash -c "sleep $auto_delete && delete_image $imgur_anon_id $del_id $log_file" &
+    fi
+
+    handle_upload_success "https://i.imgur.com/${img_id}.${img_ext}" "https://imgur.com/delete/${del_id}" "$1"
   else # upload failed
-    err_msg="$(echo "$response" | egrep -o "<error>.*</error>" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    err_msg="$(egrep -o '"error":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
     test -z "$err_msg" && err_msg="$response"
     handle_upload_error "$err_msg" "$1"
   fi
@@ -252,16 +284,23 @@ function upload_authenticated_image() {
 
 function upload_anonymous_image() {
   echo "Uploading '$1'..."
-  response="$(curl --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -F "image=@$1" -F "key=$imgur_anon_key" https://imgur.com/api/upload.xml)"
+  title="$(echo "$1" | rev | cut -d "/" -f 1 | cut -d "." -f 2- | rev)"
+  response="$(curl --compressed --connect-timeout "$upload_connect_timeout" -m "$upload_timeout" --retry "$upload_retries" -fsSL --stderr - -H "Authorization: Client-ID $imgur_anon_id" -F "title=$title" -F "image=@$1" https://api.imgur.com/3/image)"
+  # JSON parser premium edition (not really)
+  if egrep -q '"success":\s*true' <<<"$response"; then
+    img_id="$(egrep -o '"id":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
+    img_ext="$(egrep -o '"link":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4 | rev | cut -d "." -f 1 | rev)" # "link" itself has ugly '\/' escaping and no https!
+    del_id="$(egrep -o '"deletehash":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
 
-  # imgur response contains stat="ok" when successful
-  if [[ "$response" == *"stat=\"ok\""*  ]]; then
-    # cutting the url from the xml response
-    img_url="$(egrep -o "<original_image>.*</original_image>" <<<"$response" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-    del_url="$(egrep -o "<delete_page>.*</delete_page>" <<<"$response" | cut -d ">" -f 2 | cut -d "<" -f 1)"
-    handle_upload_success "$img_url" "$del_url" "$1"
+    if [ ! -z "$auto_delete" ]; then
+      export -f delete_image
+      echo "Deleting image in $auto_delete seconds."
+      nohup /bin/bash -c "sleep $auto_delete && delete_image $imgur_anon_id $del_id $log_file" &
+    fi
+
+    handle_upload_success "https://i.imgur.com/${img_id}.${img_ext}" "https://imgur.com/delete/${del_id}" "$1"
   else # upload failed
-    err_msg="$(egrep -o "<error_msg>.*</error_msg>" <<<"$response" | cut -d ">" -f 2 | cut -d "<" -f 1)"
+    err_msg="$(egrep -o '"error":\s*"[^"]+"' <<<"$response" | cut -d "\"" -f 4)"
     test -z "$err_msg" && err_msg="$response"
     handle_upload_error "$err_msg" "$1"
   fi
@@ -286,8 +325,8 @@ function handle_upload_success() {
   notify ok "Upload done!" "$1"
 
   if [ ! -z "$open_command" ] && [ "$open" = "true" ]; then
-    open_command=${open_command/\%url/$1}
-    open_command=${open_command/\%img/$2}
+    open_command=${open_command//\%url/$1}
+    open_command=${open_command//\%img/$2}
     echo "Opening '$open_command'"
     eval "$open_command"
   fi
@@ -299,28 +338,6 @@ function handle_upload_error() {
   echo -e "Error\t$2\t$error" >> "$log_file"
   notify error "Upload failed :(" "$1"
 }
-
-# determine the script's location
-which="$(which "$0")"
-origin_dir="$( dirname "$(readlink "$which" || echo "$which")")"
-
-# get the current version from .version.txt
-if [ -f "$origin_dir/.version.txt" ]; then
-  version_file="$origin_dir/.version.txt"
-elif [ -f "/usr/share/imgur-screenshot/.version.txt" ]; then
-  version_file="/usr/share/imgur-screenshot/.version.txt"
-fi
-
-if [ ! -z "$version_file" ]; then
-  current_version="$(cat "$version_file")"
-  if [ -z "$current_version" ]; then
-    echo "Something went wrong while getting the current version from '$version_file'"
-  fi
-else
-  current_version="?!?"
-  echo "Unable to find file '$origin_dir/.version.txt' or '/usr/share/imgur-screenshot/.version.txt' - Make sure it does exist."
-  echo "You can download the file from https://github.com/jomo/imgur-screenshot/"
-fi
 
 while [ $# != 0 ]; do
   case "$1" in
@@ -336,48 +353,51 @@ while [ $# != 0 ]; do
     echo "  -e, --edit=true|false     override 'edit' config. -e implies true"
     echo "  -l, --login=true|false    override 'login' config. -l implies true"
     echo "  -k, --keep=true|false     override 'keep_file' config. -k implies true"
-    echo "  file                      upload file isntead of taking a screenshot"
-    exit 0
-    ;;
+    echo "  -d, --auto-delete <s>     automatically delete image after <s> seconds"
+    echo "  file                      upload file instead of taking a screenshot"
+    exit 0;;
   -v | --version)
     echo "$current_version"
-    exit 0
-    ;;
+    exit 0;;
   -o | --open=true)
     open="true"
-    ;;
+    shift;;
   --open=false)
     open="false"
-    ;;
+    shift;;
   -e | --edit=true)
     edit="true"
-    ;;
+    shift;;
   --edit=false)
     edit="false"
-    ;;
+    shift;;
   -l | --login=true)
     login="true"
-    ;;
+    shift;;
   --login=false)
     login="false"
-    ;;
+    shift;;
   -c | --connect)
     # connect
     load_access_token
     fetch_account_info
-    exit 0
-    ;;
+    exit 0;;
   -k | --keep_file=true)
     keep_file="true"
-    ;;
+    shift;;
   --keep_file=false)
     keep_file="false"
-    ;;
+    shift;;
+  -d | --auto-delete)
+    auto_delete="$2"
+    shift 2;;
+  -u | --update)
+    check_for_update
+    exit 0;;
   *)
-    upload_file="$1"
-    ;;
+    upload_files=("$@")
+    break;;
   esac
-  shift
 done
 
 if [ "$login" = "true" ]; then
@@ -385,48 +405,54 @@ if [ "$login" = "true" ]; then
   load_access_token
 fi
 
-if [ -z "$upload_file" ]; then
-  cd "$file_dir"
-
-  # new filename with date
-  img_file="$(date +"$file_name_format")"
-  take_screenshot "$img_file"
-else
-  # upload file instead of screenshot
-  img_file="$upload_file"
+if [ -z "$upload_files" ]; then
+  upload_files[0]=""
 fi
+for upload_file in "${upload_files[@]}"; do
 
-# get full path
-img_file="$(cd "$( dirname "$img_file")" && echo "$(pwd)/$(basename "$img_file")")"
+  if [ -z "$upload_file" ]; then
+    cd "$file_dir"
 
-# open image in editor if configured
-if [ "$edit" = "true" ]; then
-  edit_command=${edit_command/\%img/$img_file}
-  echo "Opening editor '$edit_command'"
-  if ! (eval "$edit_command"); then
-    echo "Error for image '$img_file': command '$edit_command' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
-    notify error "Something went wrong :(" "Information has been logged"
+    # new filename with date
+    img_file="$(date +"$file_name_format")"
+    take_screenshot "$img_file"
+  else
+    # upload file instead of screenshot
+    img_file="$upload_file"
+  fi
+
+  # get full path
+  img_file="$(cd "$( dirname "$img_file")" && echo "$(pwd)/$(basename "$img_file")")"
+
+  # open image in editor if configured
+  if [ "$edit" = "true" ]; then
+    edit_command=${edit_command//\%img/$img_file}
+    echo "Opening editor '$edit_command'"
+    if ! (eval "$edit_command"); then
+      echo "Error for image '$img_file': command '$edit_command' failed, not uploading. For more information visit https://github.com/jomo/imgur-screenshot#troubleshooting" | tee "$log_file"
+      notify error "Something went wrong :(" "Information has been logged"
+      exit 1
+    fi
+  fi
+
+  # check if file exists
+  if [ ! -f "$img_file" ]; then
+    echo "file '$img_file' doesn't exist !"
     exit 1
   fi
-fi
 
-# check if file exists
-if [ ! -f "$img_file" ]; then
-  echo "file '$img_file' doesn't exist !"
-  exit 1
-fi
+  if [ "$login" = "true" ]; then
+    upload_authenticated_image "$img_file"
+  else
+    upload_anonymous_image "$img_file"
+  fi
 
-if [ "$login" = "true" ]; then
-  upload_authenticated_image "$img_file"
-else
-  upload_anonymous_image "$img_file"
-fi
-
-# delete file if configured
-if [ "$keep_file" = "false" ] && [ -z "$1" ]; then
-  echo "Deleting temp file ${file_dir}/${img_file}"
-  rm -rf "$img_file"
-fi
+  # delete file if configured
+  if [ "$keep_file" = "false" ] && [ -z "$1" ]; then
+    echo "Deleting temp file ${file_dir}/${img_file}"
+    rm -rf "$img_file"
+  fi
+done
 
 
 if [ "$check_update" = "true" ]; then
