@@ -1,0 +1,20 @@
+
+* Base Packages
+Let's begin with upgrading everything at the first boot
+
+#+begin_src sh
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+#+end_src
+
+* Git Setup
+#+begin_src sh
+sudo apt-get install git git-core -y &
+ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
+#+end_src
+
+#+RESULTS:
+
+
+
+
