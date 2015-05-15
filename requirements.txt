@@ -1,0 +1,6 @@
+virtualenv
+virtualenvwrapper
+ansible
+youtube-dl
+jedi
+flake8

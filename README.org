@@ -34,6 +34,19 @@ sudo apt-get install build-essential -y
   ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
 #+end_src
 
+* Python Setup
+** Installation                                                    :install:
+#+begin_src sh :results verbatim :dir /sudo:: 
+sudo apt-get install python-all python-dev python-pip
+#+end_src
+
+** Setup                                                             :setup:
+#+begin_src sh
+pip install --user virtualenv virtualenvwrapper 
+pip install --user ansible youtube-dl jedi flake8
+#+end_src
+
+
 * Emacs
 ** Installation
 *** Build Dependencies for Emacs 24.5
