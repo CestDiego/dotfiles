@@ -152,3 +152,17 @@ sudo cp /usr/share/hunspell/en_US.dic /usr/share/hunspell/english.dic &&
 sudo cp /usr/share/hunspell/eu_ES.aff /usr/share/hunspell/castellano.aff &&
 sudo cp /usr/share/hunspell/eu_ES.dic /usr/share/hunspell/castellano.dic
 #+end_src
+
+
+
+* Asciinema [[https://asciinema.org/docs/installation][⛢]]                                                       :utils:
+** Add PPA                                                           :ppa:
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-add-repository ppa:zanchey/asciinema -y
+#+end_src
+** Install                                                       :install:
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-get update
+sudo apt-get install asciinema -y
+#+end_src
+
