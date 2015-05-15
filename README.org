@@ -7,7 +7,6 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 #+end_src
 
-* Git Setup
 #+begin_src sh
 sudo apt-get install git git-core -y &
 ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
@@ -15,6 +14,11 @@ ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
 
 #+RESULTS:
 
+* Git Setup
+#+begin_src sh
+  sudo apt-get install git git-core -y &
+  ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
+#+end_src
 
 
 
