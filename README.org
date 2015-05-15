@@ -7,6 +7,19 @@ sudo apt-get update
 sudo apt-get dist-upgrade -y
 #+end_src
 
+Also for installing other .deb packages we use gdebi
+
+#+begin_src sh
+sudo apt-get install gdebi -y
+#+end_src
+
+** Setting up Development  Environment
+#+begin_src sh
+sudo apt-get install build-essential -y
+#+end_src
+
+
+
 #+begin_src sh
 sudo apt-get install git git-core -y &
 ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
