@@ -2,19 +2,19 @@
 * Base Packages
 Let's begin with upgrading everything at the first boot
 
-#+begin_src sh
+#+begin_src sh :results verbatim :dir /sudo::
 sudo apt-get update
 sudo apt-get dist-upgrade -y
 #+end_src
 
 Also for installing other .deb packages we use gdebi
 
-#+begin_src sh
+#+begin_src sh :results verbatim :dir /sudo::
 sudo apt-get install gdebi -y
 #+end_src
 
 ** Setting up Development  Environment
-#+begin_src sh
+#+begin_src sh :results verbatim :dir /sudo::
 sudo apt-get install build-essential -y
 #+end_src
 
