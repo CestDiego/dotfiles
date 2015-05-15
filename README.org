@@ -166,3 +166,25 @@ sudo apt-get update
 sudo apt-get install asciinema -y
 #+end_src
 
+* Java                                                                  :dev:
+** Add PPA                                                             :ppa:
+
+#+begin_src sh :results verbatim :dir /sudo::
+sudo add-apt-repository ppa:webupd8team/java -y
+#+end_src
+** Install                                                         :install:
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-get install oracle-java8-installer
+#+end_src
+
+* Spotify [[https://www.spotify.com/pe/download/previews/][⛢]]                                                      :media:
+** Add PPA                                                             :ppa:
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free" &&
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 &&
+#+end_src
+** Install                                                         :install:
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-get update -qq &&
+sudo apt-get install spotify-client
+#+end_src
