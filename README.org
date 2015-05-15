@@ -18,6 +18,11 @@ sudo apt-get install gdebi -y
 sudo apt-get install build-essential -y
 #+end_src
 
+* Appearance Setup
+** Install Tweaking Stuff CompizConfig Manager                       
+#+begin_src sh :results verbatim :dir /sudo::
+sudo apt-get install unity-tweak-tool gnome-tweak-tool compizconfig-settings-manager -y
+#+end_src
 
 
 * Dropbox setup
