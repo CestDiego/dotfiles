@@ -20,9 +20,10 @@ sudo apt-get install build-essential -y
 
 
 
+* Dropbox setup
 #+begin_src sh
-sudo apt-get install git git-core -y &
-ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
+  wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.02.12_amd64.deb
+  sudo gdebi dropbox_* -y
 #+end_src
 
 #+RESULTS:
