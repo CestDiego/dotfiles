@@ -115,10 +115,10 @@ pip install --user ansible youtube-dl jedi flake8
 
 
 * Emacs
-** Installation
+** Installation                                                      :build:
 *** Build Dependencies for Emacs 24.5
 
-#+begin_src sh
+#+begin_src sh :results verbatim :dir /sudo::
   sudo apt-get build-dep emacs24 -y
 #+end_src
 
@@ -132,20 +132,21 @@ pip install --user ansible youtube-dl jedi flake8
 #+begin_src sh
   ./configure
   make
-  sudo make install
 #+end_src
 
+*** Install it
+#+begin_src sh :results verbatim :dir /sudo::
+  sudo make install
+#+end_src
 ** Hunspell and Ispell for Emacs
 
 *** Install hunspell
-#+begin_src sh
-sudo apt-get install hunspell hunspell-en-us hunspell-eu-es -y
+#+begin_src sh :results verbatim :dir /sudo::
+  sudo apt-get install hunspell hunspell-en-us hunspell-eu-es -y
 #+end_src
 
-#+RESULTS:
-
 *** Link The english and spanish stuff
-#+begin_src sh
+#+begin_src sh :results verbatim :dir /sudo::
 sudo cp /usr/share/hunspell/en_US.aff /usr/share/hunspell/english.aff &&
 sudo cp /usr/share/hunspell/en_US.dic /usr/share/hunspell/english.dic &&
 sudo cp /usr/share/hunspell/eu_ES.aff /usr/share/hunspell/castellano.aff &&
