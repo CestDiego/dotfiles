@@ -172,6 +172,14 @@ sudo cp /usr/share/hunspell/eu_ES.dic /usr/share/hunspell/castellano.dic
 #+end_src
 
 
+** Pandoc                                                              :dev:
+#+begin_src sh
+  wget https://github.com/jgm/pandoc/releases/download/1.13.2/pandoc-1.13.2-1-amd64.deb
+#+end_src
+
+#+begin_src sh :results verbatim :dir /sudo::/home/io/
+  sudo gdebi pandoc-1.13.2-1.amd64.deb
+#+end_src
 
 * Asciinema [[https://asciinema.org/docs/installation][⛢]]                                                       :utils:
 ** Add PPA                                                           :ppa:
