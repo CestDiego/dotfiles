@@ -11,19 +11,23 @@ ZSH_THEME="miloshadzic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git mix z zsh-syntax-highlighting history-substring-search)
+plugins=(git z history-substring-search)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH"
+# Eclipse
 export PATH="$PATH:/home/io/.installed/eclipse/"
-export PYTHONPATH="$HOME/horton"
+# Nodejs
+export PATH="$PATH:/home/io/.local/lib/node_modules"
 export NODE_PATH="$NODE_PATH:/home/io/.local/lib/node_modules"
+# Horton
+export PYTHONPATH="$HOME/horton"
 export HORTONDATA="$HOME/horton/data"
 
-export TERM="rxvt-unicode-256color"
+# export TERM="rxvt-unicode-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
@@ -110,7 +114,6 @@ source ~/.local/bin/virtualenvwrapper.sh
 
 export TRAVIS_TOKEN="EeHNkn8V1kKeYi2SqCx1"
 
-
 #########################################3vim
 function sano {
     mplayer -really-quiet "http://translate.google.com/translate_tts?tl=es&q=$1";
@@ -134,5 +137,3 @@ export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
 # Added by Canopy installer on 2015-02-27
 # VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/io/Enthought/Canopy_64bit/User/bin/activate
-
-# export PATH="/home/io/anaconda/bin:$PATH"
