@@ -226,3 +226,24 @@ sudo apt-get install spotify-client
 #+begin_src sh :results verbatim :dir /sudo::
   sudo apt-get install texlive-full
 #+end_src
+
+* VMWare [[Install ][⛢]]                                               :dev:virtualization:
+** Grab Installer [[Install ][⛢]]
+** Enter the following License Key 
+Hint: These are ROT13'd
+#+begin_src sh
+  PI512-SNJ91-085AC-QZKDK-DYUNS
+  NN7QH-NCJ15-U848D-C5MTM-CPEP2
+  IH1A2-6QR5A-Z8QYD-NRZRI-KN2M4
+  HI3AE-NZM17-08RMC-9LDDR-ZMNL8
+  TP75H-21R50-Z8Q5D-X6LDK-J28I8
+#+end_src
+
+** Enable 3D Acceleration [[http://askubuntu.com/questions/512762/vmware-3d-acceleration-ubuntu-14-04][⛢]]
+Enable it in the .vmware preference file
+
+#+begin_src sh
+emacs ~/.vmware/preferences
+# Edit mks.gl.allowBlacklistedDrivers = FALSE
+# set to False
+#+end_src
