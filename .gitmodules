@@ -4,3 +4,6 @@
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = git@github.com:CestDiego/.emacs.d.git
+[submodule "imgur-screenshot"]
+	path = imgur-screenshot
+	url = git@github.com:jomo/imgur-screenshot.git
