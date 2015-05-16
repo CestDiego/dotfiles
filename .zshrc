@@ -18,6 +18,9 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH"
+
+# Android Studio
+export PATH="$PATH:$HOME/build/android-studio/bin"
 # Eclipse
 export PATH="$PATH:/home/io/.installed/eclipse/"
 # Nodejs
