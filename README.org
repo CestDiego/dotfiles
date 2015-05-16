@@ -140,24 +140,24 @@ Get Dependencies
   sudo apt-get build-dep emacs24 -y
 #+end_src
 
-*** Getting the source code
+Get Source code
 #+begin_src sh
   wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
   tar -xf emacs-24.5.tar.*
   cd emacs-24.5
 #+end_src
-*** Building it
+
+Build it
 #+begin_src sh
   ./configure
   make
 #+end_src
 
-*** Install it
+Install it
 #+begin_src sh :results verbatim :dir /sudo::
   sudo make install
 #+end_src
 ** Hunspell and Ispell for Emacs
-
 *** Install hunspell
 #+begin_src sh :results verbatim :dir /sudo::
   sudo apt-get install hunspell hunspell-en-us hunspell-eu-es -y
