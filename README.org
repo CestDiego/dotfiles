@@ -182,6 +182,7 @@ sudo cp /usr/share/hunspell/eu_ES.dic /usr/share/hunspell/castellano.dic
 #+end_src
 
 * Asciinema [[https://asciinema.org/docs/installation][⛢]]                                                       :utils:
+Utility that lets me record any terminal at any time
 ** Add PPA                                                           :ppa:
 #+begin_src sh :results verbatim :dir /sudo::
 sudo apt-add-repository ppa:zanchey/asciinema -y
@@ -190,6 +191,10 @@ sudo apt-add-repository ppa:zanchey/asciinema -y
 #+begin_src sh :results verbatim :dir /sudo::
 sudo apt-get update
 sudo apt-get install asciinema -y
+#+end_src
+** Setup
+#+begin_src sh
+asciinema auth
 #+end_src
 
 * Java                                                                  :dev:
