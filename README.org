@@ -197,7 +197,8 @@ sudo apt-get install asciinema -y
 asciinema auth
 #+end_src
 
-* Java                                                                  :dev:
+
+* Java [[http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html][⛢]]                                                          :dev:
 ** Add PPA                                                             :ppa:
 
 #+begin_src sh :results verbatim :dir /sudo::
