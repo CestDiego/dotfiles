@@ -22,7 +22,6 @@ sudo apt-get install build-essential -y
 #+begin_src sh :results verbatim :dir /sudo::
 sudo apt-get install unity-tweak-tool gnome-tweak-tool compizconfig-settings-manager -y
 #+end_src
-
 * SSH Setup                                                        :dev:base:
 ** From Old Setup                                                  :dropbox:
 #+begin_src sh
@@ -89,6 +88,7 @@ sudo add-apt-repository ppa:numix/ppa -y
 #+begin_src sh
 sudo apt-get install numix-gtk-theme numix-icon-theme-circle -y
 #+end_src
+* Imgur-screenshot                                                   :utils:
 * Variety [[http://peterlevi.com/variety/how-to-install/][⛢]]                                                      :appearance:
 *** Add PPA                                                           :ppa:
 #+begin_src sh :results verbatim :dir /sudo::
@@ -241,4 +241,17 @@ Enable it in the .vmware preference file
 emacs ~/.vmware/preferences
 # Edit mks.gl.allowBlacklistedDrivers = FALSE
 # set to False
+#+end_src
+* SimpleScreenRecorder                                                :utils:
+** Add PPA                                                             :ppa:
+#+begin_src sh :results verbatim :dir /sudo::
+  # SimpleScreenRecorder
+  sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+#+end_src
+
+** Install                                                         :install:
+#+begin_src sh :results verbatim :dir /sudo::
+  sudo apt-get install simplescreenrecorder -y
+  # if you want to record 32-bit OpenGL applications on a 64-bit system:
+  sudo apt-get install simplescreenrecorder-lib:i386 -y
 #+end_src
