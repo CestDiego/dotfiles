@@ -112,7 +112,7 @@ git config --global user.email "cestdiego@gmail.com" &&
 git config --global user.name  "Diego Berrocal"
 #+end_src
 
-* Python Setup
+* Python                                                                :dev:
 ** Installation                                                    :install:
 #+begin_src sh :results verbatim :dir /sudo:: 
 sudo apt-get install python-all python-dev python-pip
@@ -125,10 +125,10 @@ pip install --user ansible youtube-dl jedi flake8
 #+end_src
 
 
-* Emacs
-** Installation                                                      :build:
-*** Build Dependencies for Emacs 24.5
 
+* Emacs [[http://ubuntuhandbook.org/index.php/2014/10/emacs-24-4-released-install-in-ubuntu-14-04/][⛢]]                                                           :dev:IDE:
+** Install                                                      :build:
+Get Dependencies
 #+begin_src sh :results verbatim :dir /sudo::
   sudo apt-get build-dep emacs24 -y
 #+end_src
