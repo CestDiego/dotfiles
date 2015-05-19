@@ -28,6 +28,8 @@ export NODE_PATH="$NODE_PATH:/home/io/.local/lib/node_modules"
 # Horton
 export PYTHONPATH="$HOME/horton"
 export HORTONDATA="$HOME/horton/data"
+# Dotfiles
+export PATH="$PATH:/home/io/dotfiles/scripts/"
 
 export TERM="xterm-256color"
 # export MANPATH="/usr/local/man:$MANPATH"

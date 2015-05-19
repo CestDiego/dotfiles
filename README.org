@@ -262,6 +262,17 @@ emacs ~/.vmware/preferences
 #+end_src
 
 * GIF Recording                                                 :media:utils:
+** Install xrectsel
+#+begin_src sh
+git clone https://github.com/lolilolicon/xrectsel
+cd xrectsel
+./bootstrap
+./configure
+make
+#+end_src
+#+begin_src sh :results verbatim :dir /sudo::
+sudo make install
+#+end_src
 
 ** Add PPA                                                             :ppa:
 #+begin_src sh :results verbatim :dir /sudo::

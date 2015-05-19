@@ -7,3 +7,6 @@
 [submodule "imgur-screenshot"]
 	path = imgur-screenshot
 	url = git@github.com:jomo/imgur-screenshot.git
+[submodule "xrectsel"]
+	path = xrectsel
+	url = git@github.com:lolilolicon/xrectsel.git
