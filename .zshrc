@@ -12,7 +12,6 @@ ZSH_THEME="miloshadzic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git z history-substring-search)
-
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -20,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$PATH"
 
 # Android Studio
-export PATH="$PATH:$HOME/build/android-studio/bin"
+export PATH="$PATH:$HOME/build/android-studio/bin:$HOME/Android/Sdk/tools"
 # Eclipse
 export PATH="$PATH:/home/io/.installed/eclipse/"
 # Nodejs
@@ -30,7 +29,7 @@ export NODE_PATH="$NODE_PATH:/home/io/.local/lib/node_modules"
 export PYTHONPATH="$HOME/horton"
 export HORTONDATA="$HOME/horton/data"
 
-# export TERM="rxvt-unicode-256color"
+export TERM="xterm-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Preferred editor for local and remote sessions
@@ -131,12 +130,7 @@ function sl(){
 ######### BSPWM ENV VARIABLES ###########
 #########################################
 
-PANEL_FIFO=/tmp/panel-fifo
-PANEL_HEIGHT=24
-PANEL_FONT_FAMILY="-adobe-Source Code Pro-bold-normal-normal-*-16-*-*-*-m-0-fontset-auto1"
-export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
-
-
-# Added by Canopy installer on 2015-02-27
-# VIRTUAL_ENV_DISABLE_PROMPT can be set to '' to make bashprompt show that Canopy is active, otherwise 1
-# VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/io/Enthought/Canopy_64bit/User/bin/activate
+# PANEL_FIFO=/tmp/panel-fifo
+# PANEL_HEIGHT=24
+# PANEL_FONT_FAMILY="-adobe-Source Code Pro-bold-normal-normal-*-16-*-*-*-m-0-fontset-auto1"
+# export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
