@@ -278,3 +278,9 @@ sudo make install
 #+begin_src sh :results verbatim :dir /sudo::
   sudo add-apt-repository ppa:fossfreedom/byzanz
 #+end_src
+
+** Install                                                         :install:
+
+#+begin_src sh :results verbatim :dir /sudo::
+  sudo apt-get install xdotool byzanz
+#+end_src
