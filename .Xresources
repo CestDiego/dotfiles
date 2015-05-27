@@ -1,0 +1,67 @@
+#include "/home/io/.colors/s3r0"
+
+! #########################################
+urxvt*perl-lib:			/usr/lib/urxvt/perl
+urxvt*perl-ext-common:		default,clipboard,font-size,keyboard-select,url-select
+urxvt*perl-matcher: 		1
+urxvt*matcher-button: 		3
+
+urxvt*cursorUnderline: false
+urxvt*letterspace: -5
+
+urxvt*cursorBlink:		false
+urxvt*scrollBar:		false
+urxvt*depth:			32 
+urxvt*internalBorder: 		5
+urxvt*dynamicColors: on
+urxvt.urgentOnBell:  true
+
+! Clipboard Settings
+URxvt.clipboard.copycmd:  xclip -i -selection clipboard
+URxvt.clipboard.pastecmd: xclip -o -selection clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+! Font change settings
+URxvt.iso14755:         false
+URxvt.iso14755_52:      false
+URxvt.keysym.C-equal:	  perl:font-size:increase
+URxvt.keysym.C-minus:   perl:font-size:decrease
+URxvt.keysym.C-0:       perl:font-size:reset
+
+! Keyboard Select Settings
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+! URL Select Settings, replaces Default Matcher Extension
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.button: 1
+URxvt.url-select.underline: true
+
+! Xft Stuff
+Xft.antialias: 1
+Xft.autohint: 0
+Xft.dpi: 96
+Xft.hinting: 1
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+
+!Xclock
+xclock*majorColor: #9a875f
+xclock*minorColor: #9a875f
+xclock*minuteColor: #9a875f
+xclock*hourColor: #9a875f
+xclock*secondColor: #9a875f
+
+urxvt*font: xft:Anonymous Pro
+urxvt*boldFont: xft:Anonymous Pro Bold
+urxvt*italicFont: xft:Anonymous Pro Italic
+
+!Dmenu
+dmenu.font: xft:Anonymous Pro
+dmenu.foreground: #c0b18b
+dmenu.background: #1f1f1f
+dmenu.selforeground: #4A3637
+dmenu.selbackground: #c0b18b
