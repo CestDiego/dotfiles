@@ -1,0 +1,11 @@
+#!/bin/sh
+
+xrdb -merge ~/.Xresources
+
+stalonetray &
+
+/opt/extras.ubuntu.com/variety/bin/variety &
+
+dropbox start &
+
+emacs &

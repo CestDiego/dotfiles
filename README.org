@@ -99,6 +99,17 @@ sudo add-apt-repository ppa:peterlevi/ppa -y
 #+begin_src sh
 sudo apt-get install variety -y
 #+end_src
+*** Make it work with BSPWM 
+Install Feh
+#+begin_src sh
+sudo apt-get install feh
+#+end_src
+
+Make this change in ~/.config/variety/scripts/set_wallpaper
+#+begin_src sh
+# Feh - commented, as it may cause problems with Nautilus, (see bug https://bugs.launchpad.net/variety/+bug/1047083)
+feh --bg-scale "$WP" 2> /dev/null
+#+end_src
 
 * Dropbox setup                                                     :dropbox:
 I save most of my configuration in my own dropbox
