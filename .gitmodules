@@ -13,3 +13,6 @@
 [submodule "rice"]
 	path = rice
 	url = git@github.com:janbrennen/rice.git
+[submodule "dmenu-extended"]
+	path = dmenu-extended
+	url = git@github.com:markjones112358/dmenu-extended.git

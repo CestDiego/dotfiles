@@ -84,7 +84,8 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run -i -l 4 -fn "Anonymous Pro" -nb "#1f1f1f" -nf "#c0b18b" -sb "#1f1f1f" -sf "#d18b49"
+  dmenu_extended_run
+
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -107,6 +108,9 @@ Print
 
 super + Print
     record-window
+
+super + Shift + Print
+    record-region
 ##### Function Keys
 super + F5
   xbacklight -20
