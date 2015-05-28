@@ -10,4 +10,6 @@ dropbox start &
 
 touchegg &
 
+compton &
+
 emacs &

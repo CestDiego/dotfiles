@@ -19,3 +19,6 @@
 [submodule "compton"]
 	path = compton
 	url = git@github.com:chjj/compton.git
+[submodule "dmenu2"]
+	path = dmenu2
+	url = git@github.com:mrshankly/dmenu2.git

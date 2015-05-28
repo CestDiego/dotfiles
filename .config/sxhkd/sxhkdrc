@@ -130,4 +130,4 @@ super + F10
 super + g
     xdotool search --onlyvisible --classname scratchpad windowunmap \
     || xdotool search --classname scratchpad windowmap \
-    || urxvt -name scratchpad -geometry 800+460 & 
+    || urxvt -name scratchpad -geometry 180x30 & 
