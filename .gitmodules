@@ -10,3 +10,6 @@
 [submodule "xrectsel"]
 	path = xrectsel
 	url = git@github.com:lolilolicon/xrectsel.git
+[submodule "rice"]
+	path = rice
+	url = git@github.com:janbrennen/rice.git

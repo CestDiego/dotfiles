@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -f $HOME/.dmenurc ]; then
+	. $HOME/.dmenurc
+else
+	  DMENU='dmenu -i -nb #1f1f1f -nf #c0b18b -sb #1f1f1f -sf #d18b49 -x 600 -y 30 -w 700'
+fi
+
+input="$(xsel -o | $DMENU -fn "Anonymous Pro" -p "File Search ":)"
+if [ "$input" != '' ]
+then
+	result="$(echo "$input" | locate -e -r "$input" | $DMENU -l 20 -fn "Anonymous Pro" -p "Search Result:" )"
+	if [ "$result" != '' ]
+	then
+		urxvt -e vim "$result"
+	fi
+fi
