@@ -11,7 +11,9 @@ desktop_config() {
 	  done
 }
 desktop_config border_width 0
-desktop_config window_gap 24
+desktop_config window_gap 18
+
+desktop_config top_padding 10
 
 bspc config split_ratio         0.52
 bspc config borderless_monocle  true
@@ -26,5 +28,6 @@ bspc rule -a Screenkey manage=off
 
 bspc rule -a mpv floating=on
 bspc rule -a scratchpad floating=on
-
+bspc rule -a rangerfloat floating=on
+bspc rule -a .dmenuEextended_shellCommand.sh floating=on
 wmname LG3D

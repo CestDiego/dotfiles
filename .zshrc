@@ -26,8 +26,8 @@ export PATH="$PATH:/home/io/.installed/eclipse/"
 export PATH="$PATH:/home/io/.local/lib/node_modules"
 export NODE_PATH="$NODE_PATH:/home/io/.local/lib/node_modules"
 # Horton
-export PYTHONPATH="$HOME/horton"
-export HORTONDATA="$HOME/horton/data"
+export PYTHONPATH="$HOME/build/horton-dev"
+export HORTONDATA="$HOME/build/horton-dev/data"
 # Dotfiles
 export PATH="$PATH:/home/io/dotfiles/scripts/"
 
