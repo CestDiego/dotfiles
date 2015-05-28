@@ -16,3 +16,6 @@
 [submodule "dmenu-extended"]
 	path = dmenu-extended
 	url = git@github.com:markjones112358/dmenu-extended.git
+[submodule "compton"]
+	path = compton
+	url = git@github.com:chjj/compton.git
