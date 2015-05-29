@@ -8,11 +8,13 @@ URxvt*matcher-button: 		3
 
 URxvt*cursorUnderline: false
 URxvt*letterspace: -5
-
+urxvt*blurRadius: 75
 URxvt*cursorBlink:		false
 URxvt*scrollBar:		false
 URxvt*depth:			32 
-URxvt*background: [90]#1f1f1f
+URxvt*foreground: [100]#C0B18B
+URxvt*background: [90]#1F1F1F
+URxvt*tintColor: #1F1F1F
 URxvt*internalBorder: 		5
 URxvt*dynamicColors: on
 URxvt.urgentOnBell:  true
@@ -43,7 +45,7 @@ URxvt.url-select.underline: true
 
 ! Xft Stuff
 Xft.antialias: 1
-Xft.autohint: 0
+Xft.autohint: 1
 Xft.dpi: 96
 Xft.hinting: 1
 Xft.hintstyle: hintfull
@@ -57,6 +59,7 @@ xclock*minuteColor: #9a875f
 xclock*hourColor: #9a875f
 xclock*secondColor: #9a875f
 
-URxvt*font: xft:Anonymous Pro
-URxvt*boldFont: xft:Anonymous Pro Bold
-URxvt*italicFont: xft:Anonymous Pro Italic
+URxvt*font: xft:Anonymous Pro:Regular
+URxvt*boldFont: xft:Anonymous Pro:Bold
+URxvt*italicFont: xft:Anonymous Pro:Italic
+URxvt*bolditalicFont: xft:Anonymous Pro:Bold:Italic

@@ -90,7 +90,7 @@ super + p
 super + g
     xdotool search --onlyvisible --classname scratchpad windowunmap \
     || xdotool search --classname scratchpad windowmap \
-    || urxvt -name scratchpad -geometry 180x30 & 
+    || urxvt -name scratchpad -geometry 80x10 & 
 
 super + ctrl + f
     xdotool search --onlyvisible --classname rangerfloat windowunmap \
@@ -112,6 +112,7 @@ super + {minus,equal}
 ### Keyboard Layout
 super + shift + d
     setxkbmap -layout us
+
 super + shift + s
     setxkbmap -layout es
 
@@ -122,8 +123,9 @@ Print
 super + Print
     record-window
 
-super + Shift + Print
+super + shift + Print
     record-region
+
 ##### Function Keys
 super + F5
   xbacklight -20

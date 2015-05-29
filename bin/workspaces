@@ -29,4 +29,4 @@ while read -r line ; do
 
     output=$(desktops $line)
     echo "%{c}$output%{r}"
-done | lemonbar -bp -g "400x13+750+0" -u 5 -F "#00000000" -B "#00000000"
+done | lemonbar -bp -g "400x13+750+0" -u 10 -F "#00000000" -B "#00000000"
