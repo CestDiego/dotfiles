@@ -46,7 +46,7 @@
     ],
     "path_shellCommand": "~/.dmenuEextended_shellCommand.sh",
     "scan_hidden_folders": true,
-    "terminal": "urxvt",
+    "terminal": "urxvt -name lol",
     "valid_extensions": [
         "py",
         "el",
