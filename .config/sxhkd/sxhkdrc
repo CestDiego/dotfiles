@@ -103,6 +103,9 @@ super + Escape
 
 ## Custom
 
+super + r
+      bspc desktop -R 90
+
 super + e
       emacs
 
