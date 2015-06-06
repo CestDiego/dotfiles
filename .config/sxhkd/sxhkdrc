@@ -119,6 +119,8 @@ super + shift + d
 super + shift + s
     setxkbmap -layout es
 
+button{8,9}
+	bspc desktop -f {prev,next}
 ##### Utility
 Print
     imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga

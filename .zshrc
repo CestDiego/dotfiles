@@ -73,7 +73,6 @@ alias sleeptight="sudo shutdown -r now"
 alias this="nautilus ."
 alias show="google-chrome-stable "
 alias ls='ls --color=auto'
-
 alias nethack='telnet nethack.alt.org'
 alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
 alias asdf='sudo apt-get update && sudo apt-get upgrade -y'
@@ -136,3 +135,9 @@ function sl(){
 # PANEL_HEIGHT=24
 # PANEL_FONT_FAMILY="-adobe-Source Code Pro-bold-normal-normal-*-16-*-*-*-m-0-fontset-auto1"
 # export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
+
+
+# GSL
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/envhpc/gsl/1.9/lib
+
+export LD_LIBRARY_PATH
