@@ -29,6 +29,7 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 PANEL_FIFO=/tmp/panel-fifo
-PANEL_HEIGHT=24
-PANEL_FONT_FAMILY="Anonymous Pro:21"
+PANEL_HEIGHT=20
+PANEL_FONT_FAMILY="Anonymous Pro:18"
+PANEL_ICON_FAMILY="Font Awesome:18"
 export PANEL_FIFO PANEL_HEIGHT PANEL_FONT_FAMILY
