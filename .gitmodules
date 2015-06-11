@@ -12,7 +12,7 @@
 	url = git@github.com:janbrennen/rice.git
 [submodule "dmenu-extended"]
 	path = dmenu-extended
-	url = git@github.com:cestdiego/dmenu-extended.git
+	url = git@github.com:CestDiego/dmenu-extended.git
 [submodule "compton"]
 	path = compton
 	url = git@github.com:chjj/compton.git
