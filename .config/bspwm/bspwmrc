@@ -26,7 +26,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 bspc rule -a mpv floating=on
-bspc rule -a scratchpad floating=on
+bspc rule -a scratchpad floating=on  sticky=on
 bspc rule -a rangerfloat floating=on
 bspc rule -a lol floating=on
 bspc rule -a .dmenuEextended_shellCommand.sh floating=on
