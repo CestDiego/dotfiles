@@ -47,7 +47,7 @@ export TERM="xterm-256color"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-export EDITOR='emacsclient -c'
+export EDITOR="emacsclient -c -n -a"
 
 ########################################
 ########### -ALIASES- ##################
