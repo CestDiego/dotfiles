@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #
 # Example panel for LemonBoy's bar
 
@@ -6,69 +6,78 @@
 
 num_mon=$(bspc query -M | wc -l)
 
-while read -r line ; do
-	case $line in
-		S*)
-			# clock output
-			sys_infos="%{F$COLOR_STATUS_FG}%{B$COLOR_STATUS_BG} ${line#?} %{B-}%{F-}"
-			;;
-		T*)
-			# xtitle output
-			title="%{F$COLOR_TITLE_FG}%{B$COLOR_TITLE_BG} ${line#?} %{B-}%{F-}"
-			;;
-		W*)
-			# bspwm internal state
-			wm_infos=""
-			IFS=':'
-			set -- ${line#?}
-			while [ $# -gt 0 ] ; do
-				item=$1
-				name=${item#?}
-				case $item in
-					M*)
-						# active monitor
-						if [ $num_mon -gt 1 ] ; then
-							wm_infos="$wm_infos %{F$COLOR_ACTIVE_MONITOR_FG}%{B$COLOR_ACTIVE_MONITOR_BG} ${name} %{B-}%{F-}  "
-						fi
-						;;
-					m*)
-						# inactive monitor
-						if [ $num_mon -gt 1 ] ; then
-							wm_infos="$wm_infos %{F$COLOR_INACTIVE_MONITOR_FG}%{B$COLOR_INACTIVE_MONITOR_BG} ${name} %{B-}%{F-}  "
-						fi
-						;;
-					O*)
-						# focused occupied desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_OCCUPIED_FG}%{B$COLOR_FOCUSED_OCCUPIED_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
-						;;
-					F*)
-						# focused free desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_FREE_FG}%{B$COLOR_FOCUSED_FREE_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
-						;;
-					U*)
-						# focused urgent desktop
-						wm_infos="${wm_infos}%{F$COLOR_FOCUSED_URGENT_FG}%{B$COLOR_FOCUSED_URGENT_BG}%{U$COLOR_FOREGROUND}%{+u} ${name} %{-u}%{B-}%{F-}"
-						;;
-					o*)
-						# occupied desktop
-						wm_infos="${wm_infos}%{F$COLOR_OCCUPIED_FG}%{B$COLOR_OCCUPIED_BG} ${name} %{B-}%{F-}"
-						;;
-					f*)
-						# free desktop
-						wm_infos="${wm_infos}%{F$COLOR_FREE_FG}%{B$COLOR_FREE_BG} ${name} %{B-}%{F-}"
-						;;
-					u*)
-						# urgent desktop
-						wm_infos="${wm_infos}%{F$COLOR_URGENT_FG}%{B$COLOR_URGENT_BG} ${name} %{B-}%{F-}"
-						;;
-					L*)
-						# layout
-						wm_infos="$wm_infos  %{F$COLOR_LAYOUT_FG}%{B$COLOR_LAYOUT_BG} ${name} %{B-}%{F-}"
-						;;
-				esac
-				shift
-			done
-			;;
-	esac
-	printf "%s\n" "%{l}${wm_infos}%{c}${title}%{r}${sys_infos}"
+fg="%{F#FFddccaa}"
+bg="%{F#FF222222}"
+hi="%{F#FFbd5049}"
+green="%{F#FF808d49}"
+yellow="%{F#FFb98d50}"
+blue="%{F#FF506d79}"
+
+clock() {
+  date +'%R'
+}
+
+batt() {
+  cat /sys/class/power_supply/BAT0/capacity 2> /dev/null
+}
+
+vol() {
+  amixer get Master | tail -1 | awk '{print $4}' | tr -d '[]'
+}
+
+music() {
+  if [ "`mpc current`" ]
+  then
+    if [ "`mpc | grep 'playing'`" ]
+    then
+      icon="%{A:mpc pause:}%{A}"
+    fi
+    if [ "`mpc | grep 'paused'`" ]
+    then
+      icon="%{A:mpc play:}%{A}"
+    fi
+  echo "$icon %{A:mpc prev:}%{A} %{A:mpc next:}%{A} `mpc current -f %title%`"
+  fi
+}
+
+apps() {
+  echo "%{A:firefox:}%{A} %{A:urxvt -e ncmpcpp:}%{A} %{A:thunar:}%{A} %{A:libreoffice:}%{A} %{A:urxvt:}%{A} $fg"
+}
+
+close() {
+  if [ "`bspc query -d focused -W`" ]
+  then
+    echo "%{A:bspc window -c:}%{A}"
+  fi
+}
+
+desktops() {
+  desktops=""
+  for desktop in `bspc query -D`
+  do
+    if [ $desktop = "`bspc query -d focused -D`" ]
+    then
+      desktops="$desktops $hi$desktop"
+    else
+      desktops="$desktops $fg$desktop"
+    fi
+  done
+  echo "$desktops $fg"
+}
+
+while :; do
+  eval cd "/home/io"
+  buf="$fg $(close)"
+  # buf="$buf $(music)"
+  buf="$buf %{c}"
+  buf="$buf $(desktops)"
+  buf="$buf %{r}"
+  buf="$buf $(apps)"
+  buf="$buf $green$fg $(batt)%"
+  buf="$buf $blue$fg $(vol)"
+  buf="$buf $yellow$fg $(clock)"
+  buf="$buf $hi%{A:urxvt -name reboot -e sudo reboot:}%{A} $fg"
+
+  echo $buf
+  sleep 0.2
 done
