@@ -176,7 +176,8 @@ exec dropbox start
 exec touchegg
 exec compton
 exec setxkbmap -option 'ctrl:no caps'
-exec nm-applet --sm-disable &
+exec --no-startup-id nm-applet
+# exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
