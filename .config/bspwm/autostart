@@ -2,7 +2,6 @@
 
 xrdb ~/.Xresources
 xset +fp ~/.fonts
-xset fp+ /usr/share/fonts-font-awesome/font
 xset fp+ /usr/share/fonts/ttf
 xset fp rehash
 wmname LG3D
