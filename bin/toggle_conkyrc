@@ -1,0 +1,29 @@
+# toggle conky for lemonbar
+
+# conky settings
+
+background no
+update_interval 1
+cpu_avg_samples 1
+total_run_times 0
+override_utf8_locale yes
+short_units yes
+pad_percents 2
+uppercase no
+out_to_console yes
+out_to_x no
+
+
+TEXT
+%{r}\
+${if_existing /home/io/.conkytoggle 1}%{A:toggleconky.sh:} - %{A}\
+# long part
+cpu ${cpu cpu0}%% ram ${mem} | \
+bat ${battery BAT0}% \
+${else} %{A:toggleconky.sh:} + %{A}\
+# shorter part 
+${if_existing /proc/net/route wlan0}${wireless_essid wlan0}${endif} | \
+${battery_short BAT0}% \
+${endif}\
+# This part is always visible
+| ${time %a, %d %b} ${time %H:%M} \

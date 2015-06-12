@@ -1,0 +1,5 @@
+#!/bin/bash
+. panel_colors
+conky -c /home/io/dotfiles/bin/toggle_conkyrc | lemonbar -p -g "900x20+50+30" -f "Source Code Pro" \
+                                   -B "$COLOR_BACKGROUND"  -F "$COLOR_FOREGROUND" \
+                | while read line; do eval "$line"; done
