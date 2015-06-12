@@ -275,12 +275,13 @@ bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpa
 
 #Scratchpad ranger
 bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || urxvt -name rangerfloat -geometry 180x30 -depth 0 -e ranger & 
-
-mode "App launch" {
+set $applaunch "Launch: (e)macs (g)oogle-chrome"
+mode $applaunch {
     bindsym e exec emacs; mode "default"
+    bindsym Shift+e exec emacsclient -c -n; mode "default"
     bindsym g exec google-chrome; mode "default"
 
     bindsym q mode "default"
     bindsym Return mode "default"
 }
-bindsym $mod+Shift+p  mode "App launch"
+bindsym --release $mod+Shift+p  mode $applaunch
