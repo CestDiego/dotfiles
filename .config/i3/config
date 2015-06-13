@@ -237,6 +237,7 @@ hide_edge_borders both
 for_window [instance="scratchpad"] floating enable
 for_window [instance="rangerfloat"] floating enable
 for_window [instance="Edit_with_Emacs_FRAME"] floating enable
+for_window [title="\*magit:.*\*$"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [title=".dmenuEextended_shellCommand.sh"] floating enable
