@@ -43,10 +43,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+Control+l split h
+bindsym $mod+Mod1+l split h
 
 # split in vertical orientation
-bindsym $mod+Control+j split v
+bindsym $mod+Mod1+j split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -139,6 +139,8 @@ mode "resize" {
 
 bindsym $mod+Mod1+r mode "resize"
 
+bindsym $mod+Control+l split h; exec emacsclient -c -n;
+bindsym $mod+Control+j split v; exec emacsclient -c -n;
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 set $background #272822
