@@ -179,6 +179,7 @@ exec setxkbmap -option 'ctrl:no caps'
 exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
+exec xinput --set-prop 16 "Synaptics Two-Finger Scrolling" 1 1
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
