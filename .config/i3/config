@@ -241,6 +241,7 @@ for_window [instance="Edit_with_Emacs_FRAME"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [title=".dmenuEextended_shellCommand.sh"] floating enable
+for_window [instance="Minibuf"] floating enable
 # bindsym $mod+g [instance="scratchpad"] scratchpad show
 
 ## bar
