@@ -188,9 +188,11 @@ exec xinput --set-prop 16 "Synaptics Two-Finger Scrolling" 1 1
 for_window [class="^.*"] border pixel 0
 
 gaps inner 10
-gaps outer 0
 
-smart_gaps on
+workspace $ws1 gaps outer 45
+workspace $ws2 gaps outer 0
+
+# smart_gaps on
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
