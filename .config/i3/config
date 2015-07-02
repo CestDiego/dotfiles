@@ -1,4 +1,5 @@
 set $mod Mod4
+set $psst --no-startup-id
 
 font xft:FontAwesome, xft:Source Code Pro 10
 
@@ -149,7 +150,7 @@ set $focused_background #C0B18B
 set $active_background #4F4F4F
 set $normal_background #F1F1F1
 bar {
-        status_command i3status
+        status_command ~/.config/i3status/custom_bar.sh
         strip_workspace_numbers yes
         position top
         height 20
@@ -172,7 +173,7 @@ exec xrdb ~/.Xresources
 exec xset +fp ~/.fonts
 exec xset +fp /usr/share/fonts/ttf
 exec xset fp rehash
-exec wmname LG3D
+exec_all --no-startup-id wmname LG3D
 exec emacs
 exec /opt/extras.ubuntu.com/variety/bin/variety
 exec dropbox start
@@ -182,17 +183,18 @@ exec setxkbmap -option 'ctrl:no caps'
 exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
-exec xinput --set-prop 16 "Synaptics Two-Finger Scrolling" 1 1
+exec --no-startup-id xinput --set-prop 13 "Synaptics Two-Finger Scrolling" 1 1
+exec --no-startup-id xinput --set-prop 16 "Synaptics Two-Finger Scrolling" 1 1
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
 
 gaps inner 10
 
-workspace $ws1 gaps outer 45
-workspace $ws2 gaps outer 0
+# workspace $ws1 gaps outer 45
+# workspace $ws2 gaps outer 0
 
-# smart_gaps on
+smart_gaps on
 
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -260,8 +262,8 @@ bindsym $mod+Shift+d exec setxkbmap -layout us
 bindsym $mod+Shift+s exec setxkbmap -layout es
 
 ## Special Keys
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master 100%- unmute && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute && killall -SIGUSR1 i3status
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- unmute && killall -SIGUSR1 i3status
@@ -297,7 +299,7 @@ bindsym --release $mod+Shift+p  mode $applaunch
 set $session " (E)xit  (L)ock  (P)oweroff  (R)eboot"
 mode $session {
     bindsym Shift+e exec $psst i3-msg exit; mode "default"
-    bindsym Shift+l exec $psst i3lock -c 282828; mode "default"
+    bindsym Shift+l exec $psst ~/.config/i3/lock.sh; mode "default"
     bindsym Shift+p exec $psst systemctl poweroff; mode "default"
     bindsym Shift+r exec $psst systemctl reboot; mode "default"
 

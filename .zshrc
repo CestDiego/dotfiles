@@ -143,3 +143,9 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/envhpc/gsl/1.9/lib
 export LD_LIBRARY_PATH
 export DEBFULLNAME="Diego Berrocal"
 export DEBEMAIL="cestdiego@gmail.com"
+
+###-tns-completion-start-###
+if [ -f /home/io/.tnsrc ]; then 
+    source /home/io/.tnsrc 
+fi
+###-tns-completion-end-###
