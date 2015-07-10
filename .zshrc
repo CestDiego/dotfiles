@@ -30,6 +30,8 @@ export PYTHONPATH="$HOME/build/horton-dev"
 export HORTONDATA="$HOME/build/horton-dev/data"
 # Dotfiles
 export PATH="$PATH:/home/io/dotfiles/scripts/"
+# Nand2Tetris stuff
+export PATH="$PATH:/home/io/build/nand2tetris/tools"
 
 export TERM="xterm-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
