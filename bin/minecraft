@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar ~/Downloads/Mineshafter-launcher.jar
+java -jar ~/.minecraft/launcher.jar
