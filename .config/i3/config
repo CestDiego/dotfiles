@@ -13,7 +13,8 @@ bindsym $mod+q kill
 
 # start dmenu_extended_run (a program launcher)
 # git@github.com:CestDiego/dmenu-extended.git
-bindsym $mod+p exec dmenu_extended_run
+# bindsym $mod+p exec dmenu_extended_run
+bindsym $mod+p exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -150,11 +151,12 @@ set $focused_background #C0B18B
 set $active_background #4F4F4F
 set $normal_background #F1F1F1
 bar {
-        status_command ~/.config/i3status/custom_bar.sh
+        # status_command ~/.config/i3status/custom_bar.sh
+        status_command i3status
         strip_workspace_numbers yes
         position top
         height 20
-        mode hide
+        # mode hide
         modifier Mod1
         separator_symbol " "
         colors {

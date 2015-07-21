@@ -1,8 +1,8 @@
-#include "/home/io/.colors/s3r0"
+#include "/home/jarvis/.colors/s3r0"
 
 ! #########################################
-URxvt*perl-lib:			/usr/lib/URxvt/perl
 URxvt*perl-ext-common:		default,clipboard,font-size,keyboard-select,url-select
+URxvt*url-select.launcher: /run/current-system/sw/bin/xdg-open
 URxvt*perl-matcher: 		1
 URxvt*matcher-button: 		3
 
@@ -11,8 +11,7 @@ URxvt*letterspace: -5
 urxvt*blurRadius: 75
 URxvt*cursorBlink:		false
 URxvt*scrollBar:		false
-URxvt*depth:			32 
-URxvt*foreground: [100]#C0B18B
+URxvt*depth:			32 URxvt*foreground: [100]#C0B18B
 URxvt*background: [90]#1F1F1F
 URxvt*tintColor: #1F1F1F
 URxvt*internalBorder: 		5
@@ -59,7 +58,7 @@ xclock*minuteColor: #9a875f
 xclock*hourColor: #9a875f
 xclock*secondColor: #9a875f
 
-URxvt*font: xft:Anonymous Pro:Regular,xft:FontAwesome:size=10
-URxvt*boldFont: xft:Anonymous Pro:Bold
-URxvt*italicFont: xft:Anonymous Pro:Italic
-URxvt*bolditalicFont: xft:Anonymous Pro:Bold:Italic
+URxvt*font: xft:Source Code Pro:Regular,xft:FontAwesome:size=10
+URxvt*boldFont: xft:Source Code Pro:Bold
+URxvt*italicFont: xft:Source Code Pro:Italic
+URxvt*bolditalicFont: xft:Source Code Pro:Boldthinking :Italil
