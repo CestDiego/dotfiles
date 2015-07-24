@@ -186,7 +186,7 @@ exec setxkbmap -option 'ctrl:no caps'
 exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
-exec --no-startup-id udiskie -t
+exec --no-startup-id udiskie --tray
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
