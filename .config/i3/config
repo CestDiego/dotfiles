@@ -26,54 +26,54 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
+# Alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
+# Move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# alternatively, you can use the cursor keys:
+# Alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation
+# Split in horizontal orientation
 bindsym $mod+Mod1+l split h
 
-# split in vertical orientation
+# Split in vertical orientation
 bindsym $mod+Mod1+j split v
 
-# enter fullscreen mode for the focused container
+# Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
 
-# change container layout (stacked, tabbed, toggle split)
+# Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# toggle tiling / floating
+# Toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
+# Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
+# Focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
+# Focus the child container
 #bindsym $mod+d focus child
 
 set $ws1 1:
 set $ws2 2:
-set $ws3 3:γ
-set $ws4 4:δ
+set $ws3 3:
+set $ws4 4:
 set $ws5 5:ε
 set $ws6 6:ζ
 set $ws7 7:η
@@ -81,7 +81,7 @@ set $ws8 8:θ
 set $ws9 9:ι
 set $ws10 10:κ
 
-# switch to workspace
+# Switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -93,7 +93,7 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
-# move focused container to workspace
+# Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -104,17 +104,17 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-# bindsym $mod+Shift+bracketright workspace next
-# bindsym $mod+Shift+bracketleft workspace prev
+# Bindsym $mod+Shift+bracketright workspace next
+# Bindsym $mod+Shift+bracketleft workspace prev
 
-# reload the configuration file
+# Reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Escape restart
-# exit i3 (logs you out of your X session)
+# Exit i3 (logs you out of your X session)
 
 
-# resize window (you can also use the mouse for that)
+# Resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -144,15 +144,16 @@ bindsym $mod+Mod1+r mode "resize"
 bindsym $mod+Control+l split h; exec emacsclient -c -n;
 bindsym $mod+Control+j split v; exec emacsclient -c -n;
 # Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-set $background #272822
+# Finds out, if available)
+set $background #1f1f1f
 set $foreground #C0B18B
 set $focused_background #C0B18B
 set $active_background #4F4F4F
 set $normal_background #F1F1F1
 bar {
         # status_command ~/.config/i3status/custom_bar.sh
-        status_command i3status
+        status_command /home/jarvis/.config/i3/conky-i3bar
+        # status_command i3status
         strip_workspace_numbers yes
         position top
         height 20
@@ -171,13 +172,13 @@ bar {
         }
 }
 ##### Custom stuff ######
-exec xrdb ~/.Xresources
-exec xset +fp ~/.fonts
-exec xset +fp /usr/share/fonts/ttf
-exec xset fp rehash
+# exec xrdb ~/.Xresources
+# exec xset +fp ~/.fonts
+# exec xset +fp /usr/share/fonts/ttf
+# exec xset fp rehash
 exec_all --no-startup-id wmname LG3D
 exec emacs
-exec /opt/extras.ubuntu.com/variety/bin/variety
+# exec /opt/extras.ubuntu.com/variety/bin/variety
 exec dropbox start
 exec touchegg
 exec compton
@@ -185,8 +186,7 @@ exec setxkbmap -option 'ctrl:no caps'
 exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
-exec --no-startup-id xinput --set-prop 13 "Synaptics Two-Finger Scrolling" 1 1
-exec --no-startup-id xinput --set-prop 16 "Synaptics Two-Finger Scrolling" 1 1
+exec --no-startup-id udiskie -t
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
@@ -271,6 +271,11 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmu
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- unmute && killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute && killall -SIGUSR1 i3status
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ unmute && killall -SIGUSR1 i3status
+
+bindsym XF86AudioStop exec mpc stop
+bindsym XF86AudioPlay exec mpc toggle
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 
 ## Mouse
 focus_follows_mouse no

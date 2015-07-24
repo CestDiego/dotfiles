@@ -4,24 +4,6 @@
 [submodule "imgur-screenshot"]
 	path = imgur-screenshot
 	url = git@github.com:jomo/imgur-screenshot.git
-[submodule "xrectsel"]
-	path = xrectsel
-	url = git@github.com:lolilolicon/xrectsel.git
 [submodule "rice"]
 	path = rice
 	url = git@github.com:janbrennen/rice.git
-[submodule "dmenu-extended"]
-	path = dmenu-extended
-	url = git@github.com:CestDiego/dmenu-extended.git
-[submodule "compton"]
-	path = compton
-	url = git@github.com:chjj/compton.git
-[submodule "dmenu2"]
-	path = dmenu2
-	url = git@github.com:mrshankly/dmenu2.git
-[submodule "i3"]
-	path = i3
-	url = git@github.com:Airblader/i3.git
-[submodule "i3lock-color"]
-	path = i3lock-color
-	url = git@github.com:eBrnd/i3lock-color.git
