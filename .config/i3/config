@@ -14,7 +14,8 @@ bindsym $mod+q kill
 # start dmenu_extended_run (a program launcher)
 # git@github.com:CestDiego/dmenu-extended.git
 # bindsym $mod+p exec dmenu_extended_run
-bindsym $mod+p exec dmenu_run
+bindsym $mod+p exec dmenu_run -x 50 -h 10 -w 900 -i -q -p "$" -nb "#1f1f1f" -sb "#5f5f5f" -fn "Source Code Pro"
+# dmenu_run -y $PANEL_GAP -x $PANEL_GAP -h $PANEL_HEIGHT -w $PANEL_WIDTH -i -q -p "$" -nb "$PANEL_BG" -sb "$PANEL_BG" -fn "$PANEL_FONT_MAIN"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -156,7 +157,7 @@ bar {
         # status_command i3status
         strip_workspace_numbers yes
         position top
-        height 20
+        height 25
         # mode hide
         modifier Mod1
         separator_symbol " "
