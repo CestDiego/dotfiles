@@ -7,3 +7,6 @@
 [submodule "rice"]
 	path = rice
 	url = git@github.com:janbrennen/rice.git
+[submodule "maglev"]
+	path = maglev
+	url = git@github.com:caiogondim/maglev.git

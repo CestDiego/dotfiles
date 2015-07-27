@@ -1,7 +1,7 @@
 set $mod Mod4
 set $psst --no-startup-id
 
-font xft:FontAwesome, xft:Source Code Pro 10
+font xft:FontAwesome, xft:InputMono 11
 
 floating_modifier $mod
 
@@ -14,8 +14,7 @@ bindsym $mod+q kill
 # start dmenu_extended_run (a program launcher)
 # git@github.com:CestDiego/dmenu-extended.git
 # bindsym $mod+p exec dmenu_extended_run
-bindsym $mod+p exec dmenu_run -x 50 -h 10 -w 900 -i -q -p "$" -nb "#1f1f1f" -sb "#5f5f5f" -fn "Source Code Pro"
-# dmenu_run -y $PANEL_GAP -x $PANEL_GAP -h $PANEL_HEIGHT -w $PANEL_WIDTH -i -q -p "$" -nb "$PANEL_BG" -sb "$PANEL_BG" -fn "$PANEL_FONT_MAIN"
+bindsym $mod+p exec dmenu_run -h 19 -w 700 -i -q -p "$" -nb "#1f1f1f" -sb "#5f5f5f" -fn "Source Code Pro"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -73,13 +72,13 @@ bindsym $mod+a focus parent
 
 set $ws1 1:
 set $ws2 2:
-set $ws3 3:
+set $ws3 3:
 set $ws4 4:
-set $ws5 5:ε
-set $ws6 6:ζ
-set $ws7 7:η
-set $ws8 8:θ
-set $ws9 9:ι
+set $ws5 5: 
+set $ws6 6:
+set $ws7 7:
+set $ws8 8:
+set $ws9 9:
 set $ws10 10:κ
 
 # Switch to workspace
@@ -153,12 +152,10 @@ set $active_background #4F4F4F
 set $normal_background #F1F1F1
 bar {
         # status_command ~/.config/i3status/custom_bar.sh
-        status_command /home/jarvis/.config/i3/conky-i3bar
+        status_command ~/.config/i3/conky-i3bar
         # status_command i3status
         strip_workspace_numbers yes
         position top
-        height 25
-        # mode hide
         modifier Mod1
         separator_symbol " "
         colors {
@@ -188,54 +185,56 @@ exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
 exec --no-startup-id udiskie --tray
+# exec_always conky -c /home/jarvis/dotfiles/.config/i3/toggle_conkyrc | lemonbar -d -p -g "1700x20+140" -B "#1f1f1f" -F "#a0a0a0" -f "InputMono:size=11" -f "FontAwesome:size=13" | while read line; do eval "$line"; done 
+
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
 
-gaps inner 10
+# gaps inner 10
 
-# workspace $ws1 gaps outer 45
-# workspace $ws2 gaps outer 0
+# # workspace $ws1 gaps outer 45
+# # workspace $ws2 gaps outer 0
 
-smart_gaps on
+# smart_gaps on
 
-set $mode_gaps Gaps: (o) outer, (i) inner
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+# set $mode_gaps Gaps: (o) outer, (i) inner
+# set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+# set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 
-bindsym $mod+Shift+g mode "$mode_gaps"
+# bindsym $mod+Shift+g mode "$mode_gaps"
 
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+# mode "$mode_gaps" {
+#         bindsym o      mode "$mode_gaps_outer"
+#         bindsym i      mode "$mode_gaps_inner"
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+# }
 
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
+# mode "$mode_gaps_inner" {
+#         bindsym plus  gaps inner current plus 5
+#         bindsym minus gaps inner current minus 5
+#         bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+#         bindsym Shift+plus  gaps inner all plus 5
+#         bindsym Shift+minus gaps inner all minus 5
+#         bindsym Shift+0     gaps inner all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+# }
+# mode "$mode_gaps_outer" {
+#         bindsym plus  gaps outer current plus 5
+#         bindsym minus gaps outer current minus 5
+#         bindsym 0     gaps outer current set 0
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+#         bindsym Shift+plus  gaps outer all plus 5
+#         bindsym Shift+minus gaps outer all minus 5
+#         bindsym Shift+0     gaps outer all set 0
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+# }
 ## Appearance
 hide_edge_borders both
 
@@ -305,6 +304,7 @@ mode $applaunch {
 bindsym --release $mod+Shift+p  mode $applaunch
 
 set $session " (E)xit  (L)ock  (P)oweroff  (R)eboot"
+
 mode $session {
     bindsym Shift+e exec $psst i3-msg exit; mode "default"
     bindsym Shift+l exec $psst ~/.config/i3/lock.sh; mode "default"

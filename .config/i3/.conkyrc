@@ -1,12 +1,12 @@
 # -*- mode:conf -*-
+background no
 out_to_x no
 own_window no
 out_to_console yes
-background no
 max_text_width 0
 
 # Update interval in seconds
-update_interval 2.0
+update_interval 0.1
 
 # This is the number of times Conky will update before quitting.
 # Set to zero to run forever.
@@ -30,10 +30,12 @@ override_utf8_locale yes
 
 # number of cpu samples to average
 # set to 1 to disable averaging
-cpu_avg_samples 2
+cpu_avg_samples 1
 
 # Stuff after 'TEXT' will be formatted on screen
 TEXT
 # JSON for i3bar
- [${if_match "$nodename" == "nixos"} { "full_text" : "$if_mpd_playing ♪ ${mpd_smart 75} $endif", "color":"\#ffffff"}, ${endif}
-  { "full_text" : " ${time %a,} ${time %d %b}  ${time %H:%M}", "color" : "\#ffffff" }],
+ [${if_match "$nodename" == "nixos"} { "full_text" : "$if_mpd_playing  ${mpd_smart 75} $endif"}, ${endif}
+{ "full_text" : "  ${wireless_essid wlp3s0}"},
+{ "full_text" : "  ${battery BAT0}"},
+{ "full_text" : "  ${time %a,} ${time %d %b}  ${time %H:%M}" }],
