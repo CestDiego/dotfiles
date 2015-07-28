@@ -3,7 +3,7 @@
 if [ -f $HOME/.dmenurc ]; then
 	. $HOME/.dmenurc
 else
-	  DMENU='dmenu -i -nb #1f1f1f -nf #c0b18b -sb #1f1f1f -sf #d18b49 -x 600 -y 30 -w 700'
+	  DMENU='dmenu -i -nb #272822 -nf #c0b18b -sb #272822 -sf #d18b49 -x 600 -y 30 -w 700'
 fi
 
 input="$(xsel -o | $DMENU -fn "Anonymous Pro" -p "File Search ":)"

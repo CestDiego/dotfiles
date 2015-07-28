@@ -12,8 +12,9 @@ urxvt*blurRadius: 75
 URxvt*cursorBlink:		false
 URxvt*scrollBar:		false
 URxvt*depth:			32 URxvt*foreground: [100]#C0B18B
-URxvt*background: [90]#1F1F1F
-URxvt*tintColor: #1F1F1F
+! URxvt*background: [90]#272822
+URxvt*background: #272822
+! URxvt*tintColor: #272822
 URxvt*internalBorder: 		5
 URxvt*dynamicColors: on
 URxvt.urgentOnBell:  true

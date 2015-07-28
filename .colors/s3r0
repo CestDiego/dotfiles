@@ -1,4 +1,4 @@
-*.background: #1f1f1f
+*.background: #272822
 *foreground: #c0b18b
 
 !black

@@ -2,7 +2,7 @@
 
 focused="%{U#FFC0B18B+u}----------%{U-}"
 active="%{U#FF4F4F4F+u}----------%{U-}"
-normal="%{U#FF1F1F1F+u}----------%{U-}"
+normal="%{U#FF272822+u}----------%{U-}"
 
 desktops() {
     desktops=""
