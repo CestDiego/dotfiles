@@ -33,6 +33,8 @@ export PATH="$PATH:/home/io/dotfiles/scripts/"
 # Nand2Tetris stuff
 export PATH="$PATH:/home/io/build/nand2tetris/tools"
 
+# export NIX_PATH="nixpkgs=$HOME/Projects/nixpkgs:$NIX_PATH"
+
 export TERM="xterm-256color"
 # export MANPATH="/usr/local/man:$MANPATH"
 

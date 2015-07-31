@@ -34,6 +34,11 @@ URxvt.keysym.C-equal:	  perl:font-size:increase
 URxvt.keysym.C-minus:   perl:font-size:decrease
 URxvt.keysym.C-0:       perl:font-size:reset
 
+URxvt*font: xft:InputMono:Regular,xft:FontAwesome:size=10
+URxvt*boldFont: xft:InputMono:Bold
+URxvt*italicFont: xft:InputMono:Italic
+URxvt*bolditalicFont: xft:InputMono:Boldthinking :Italic
+
 ! Keyboard Select Settings
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
@@ -58,8 +63,3 @@ xclock*minorColor: #9a875f
 xclock*minuteColor: #9a875f
 xclock*hourColor: #9a875f
 xclock*secondColor: #9a875f
-
-URxvt*font: xft:InputMono:Regular,xft:FontAwesome:size=10
-URxvt*boldFont: xft:InputMono:Bold
-URxvt*italicFont: xft:InputMono:Italic
-URxvt*bolditalicFont: xft:InputMono:Boldthinking :Italic
