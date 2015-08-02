@@ -185,6 +185,7 @@ exec --no-startup-id nm-applet
 # exec nm-applet --sm-disable &
 exec_always xrdb ~/.Xresources
 exec --no-startup-id udiskie --tray
+exec --no-startup-id check-channel-update.sh --loop
 # exec_always conky -c /home/jarvis/dotfiles/.config/i3/toggle_conkyrc | lemonbar -d -p -g "1700x20+140" -B "#272822" -F "#a0a0a0" -f "InputMono:size=11" -f "FontAwesome:size=13" | while read line; do eval "$line"; done 
 
 ## Enable the Gaps!!
