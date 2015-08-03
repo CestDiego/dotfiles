@@ -36,6 +36,5 @@ cpu_avg_samples 1
 TEXT
 # JSON for i3bar
  [${if_match "$nodename" == "nixos"} { "full_text" : "$if_mpd_playing  ${mpd_smart 75}   $endif"}, ${endif}
-{ "full_text" : "    ${wireless_essid wlp3s0}"},
 { "full_text" : "    ${battery BAT0}"},
 { "full_text" : "    ${time %d %b} / ${time %H:%M}" }],
