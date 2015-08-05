@@ -175,6 +175,7 @@ bar {
 # exec xset +fp /usr/share/fonts/ttf
 # exec xset fp rehash
 exec_all --no-startup-id wmname LG3D
+exec --no-startup-id feh --bg-scale ~/Pictures/uJHiPpX.jpg
 exec emacs
 # exec /opt/extras.ubuntu.com/variety/bin/variety
 exec dropbox start
