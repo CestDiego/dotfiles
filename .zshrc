@@ -5,7 +5,10 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bullet-train"
+# ZSH_THEME="bullet-train"
+ZSH_THEME="jonathan"
+# ZSH_THEME="afowler"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -122,6 +125,11 @@ alias scinet='ssh -l diego login.scinet.utoronto.ca'
 alias wobbie='ssh -Y -i ~/.ssh/id_rsa diego@wobbie.sharcnet.ca'
 alias viz8='ssh -Y -i ~/.ssh/id_rsa diego@viz8-uwo.sharcnet.ca'
 
+alias burn='sudo -i nixos-rebuild switch'
+alias buzz='pushblast "sudo -i nixos-rebuild switch"'
+alias nrep='nix-env -qaP --description | grep '
+alias lrep='ls -lha | grep '
+
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
 }
@@ -129,8 +137,28 @@ ur_forget() {
     eval `/home/io/.ureka/ur_forget -sh $*`
 }
 
+
+export BULLETTRAIN_DIR_SHOW=false
+export BULLETTRAIN_PROMPT_CHAR="ƛ"
+# export BULLETTRAIN_STATUS_SHOW=true
 # # GSL
 # LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/envhpc/gsl/1.9/lib
-export LD_LIBRARY_PATH
+# export LD_LIBRARY_PATH
 export DEBFULLNAME="Diego Berrocal"
 export DEBEMAIL="cestdiego@gmail.com"
+
+if [[ $ZSH_THEME == "jonathan" ]]; then
+
+PROMPT='$PR_SET_CHARSET$PR_STITLE${(e)PR_TITLEBAR}\
+$PR_CYAN$PR_ULCORNER$PR_HBAR$PR_GREY(\
+$PR_GREEN%$PR_PWDLEN<...<%~%<<\
+$PR_GREY)`rvm_prompt_info || rbenv_prompt_info`$PR_CYAN$PR_HBAR$PR_HBAR${(e)PR_FILLBAR}$PR_HBAR$PR_GREY(\
+$PR_CYAN%(!.%SROOT%s.%n)$PR_GREY@$PR_GREEN%m:%l\
+$PR_GREY)$PR_CYAN$PR_HBAR$PR_URCORNER\
+
+$PR_CYAN$PR_LLCORNER$PR_BLUE$PR_HBAR(\
+$PR_YELLOW%D{%H:%M:%S}\
+$PR_LIGHT_BLUE%{$reset_color%}`git_prompt_info``git_prompt_status`$PR_BLUE)$PR_CYAN$PR_HBAR\
+$PR_HBAR\
+>$PR_NO_COLOUR '
+fi
