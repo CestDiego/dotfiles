@@ -62,7 +62,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+tab focus mode_toggle
 
 # Focus the parent container
 bindsym $mod+a focus parent
@@ -298,6 +298,9 @@ bindsym $mod+Shift+Print exec record-region
 
 # Scratchpad Terminal
 bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap  || urxvt -name scratchpad -geometry 80x10 & 
+
+# Emacs Capture!
+bindsym $mod+space emacs-capture -e "(org-capture nil \"l\")"
 
 #Scratchpad ranger
 bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || urxvt -name rangerfloat -geometry 180x30 -depth 0 -e ranger & 
