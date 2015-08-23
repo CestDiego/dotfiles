@@ -1,7 +1,7 @@
 set $mod Mod4
 set $psst --no-startup-id
 
-font xft:FontAwesome, xft:InputMono 11
+font pango:FontAwesome, InputMono 12
 
 floating_modifier $mod
 
