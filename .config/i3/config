@@ -140,6 +140,7 @@ mode "resize" {
         bindsym q mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym Ctrl+g mode "default"
 }
 
 bindsym $mod+Mod1+r mode "resize"
@@ -213,6 +214,7 @@ for_window [class="^.*"] border pixel 0
 #         bindsym o      mode "$mode_gaps_outer"
 #         bindsym i      mode "$mode_gaps_inner"
 #         bindsym Return mode "default"
+#         bindsym Ctrl+g mode "default"
 #         bindsym Escape mode "default"
 # }
 
@@ -226,6 +228,7 @@ for_window [class="^.*"] border pixel 0
 #         bindsym Shift+0     gaps inner all set 0
 
 #         bindsym Return mode "default"
+#         bindsym Ctrl+g mode "default"
 #         bindsym Escape mode "default"
 # }
 # mode "$mode_gaps_outer" {
@@ -238,6 +241,7 @@ for_window [class="^.*"] border pixel 0
 #         bindsym Shift+0     gaps outer all set 0
 
 #         bindsym Return mode "default"
+#         bindsym Ctrl+g mode "default"
 #         bindsym Escape mode "default"
 # }
 ## Appearance
@@ -313,6 +317,7 @@ mode $applaunch {
     bindsym g exec google-chrome; mode "default"
 
     bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
     bindsym Return mode "default"
 }
 bindsym --release $mod+Shift+p  mode $applaunch
@@ -326,6 +331,7 @@ mode $session {
     bindsym Shift+r exec $psst systemctl reboot; mode "default"
 
     bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
     bindsym Escape mode "default"
 }
 
