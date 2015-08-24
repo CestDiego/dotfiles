@@ -1,0 +1,67 @@
+# -*- mode:conf -*-
+set $mod Mod4
+set $psst --no-startup-id
+
+font pango:FontAwesome, InputMono 12
+
+floating_modifier $mod
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# Finds out, if available)
+bar {
+        # status_command ~/.config/i3status/custom_bar.sh
+        status_command ~/.config/i3/conky-i3bar
+        # status_command i3status
+        strip_workspace_numbers yes
+        position top
+        modifier Mod1
+        separator_symbol " "
+        colors {
+            background $background
+            statusline $foreground
+            separator #FF0000
+
+            focused_workspace  #4c7899 #285577 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+        }
+}
+
+##### Custom stuff ######
+# exec xrdb ~/.Xresources
+# exec xset +fp ~/.fonts
+# exec xset +fp /usr/share/fonts/ttf
+# exec xset fp rehash
+exec_all --no-startup-id wmname LG3D
+exec --no-startup-id feh --bg-scale ~/Pictures/9q4Odsw.jpg
+exec emacs
+# exec /opt/extras.ubuntu.com/variety/bin/variety
+exec dropbox start
+exec touchegg
+exec compton
+exec setxkbmap -option 'ctrl:no caps'
+exec --no-startup-id nm-applet
+# exec nm-applet --sm-disable &
+exec_always xrdb ~/.Xresources
+exec --no-startup-id udiskie --tray
+exec --no-startup-id check-channel-update.sh --loop
+# exec_always conky -c /home/jarvis/dotfiles/.config/i3/toggle_conkyrc | lemonbar -d -p -g "1700x20+140" -B "#272822" -F "#a0a0a0" -f "InputMono:size=11" -f "FontAwesome:size=13" | while read line; do eval "$line"; done 
+
+## Appearance
+hide_edge_borders both
+
+## Make me float!
+# when using name=sth in urxvt here we mean `instance`
+for_window [instance="scratchpad"] floating enable
+for_window [instance="rangerfloat"] floating enable
+for_window [instance="Edit_with_Emacs_FRAME"] floating enable
+for_window [instance="emacs-capture"] floating enable
+for_window [instance="emacs-agenda"] floating enable
+# for_window [title="\*magit:.*\*$"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Zeal"] floating enable
+for_window [title=".dmenuEextended_shellCommand.sh"] floating enable
+for_window [instance="Minibuf"] floating enable
+# bindsym $mod+g [instance="scratchpad"] scratchpad show

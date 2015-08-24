@@ -1,0 +1,14 @@
+# -*- mode:conf -*-
+## Emacs Agenda
+set $emacs-agenda "Emacs Agenda:  (A)genda  (T)odos  (L)inks"
+mode $emacs-agenda {
+    bindsym a exec emacs-agenda --eval '(org-agenda nil "a")'; mode "default"
+    bindsym t exec emacs-agenda --eval '(org-agenda nil "t")'; mode "default"
+    bindsym l exec emacs-agenda --eval '(org-agenda nil "l")'; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+a  mode $emacs-agenda
+bindsym $mod+mod1+space exec emacs-agenda --eval '(org-agenda)'

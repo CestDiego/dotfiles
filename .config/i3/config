@@ -1,3 +1,4 @@
+# -*- mode:conf -*-
 set $mod Mod4
 set $psst --no-startup-id
 
@@ -5,6 +6,71 @@ font pango:FontAwesome, InputMono 12
 
 floating_modifier $mod
 
+# Start i3bar to display a workspace bar (plus the system information i3status
+# Finds out, if available)
+bar {
+        # status_command ~/.config/i3status/custom_bar.sh
+        status_command ~/.config/i3/conky-i3bar
+        # status_command i3status
+        strip_workspace_numbers yes
+        position top
+        modifier Mod1
+        separator_symbol " "
+        colors {
+            background $background
+            statusline $foreground
+            separator #FF0000
+
+            focused_workspace  #4c7899 #285577 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+        }
+}
+
+##### Custom stuff ######
+# exec xrdb ~/.Xresources
+# exec xset +fp ~/.fonts
+# exec xset +fp /usr/share/fonts/ttf
+# exec xset fp rehash
+exec_all --no-startup-id wmname LG3D
+exec --no-startup-id feh --bg-scale ~/Pictures/9q4Odsw.jpg
+exec emacs
+# exec /opt/extras.ubuntu.com/variety/bin/variety
+exec dropbox start
+exec touchegg
+exec compton
+exec setxkbmap -option 'ctrl:no caps'
+exec --no-startup-id nm-applet
+# exec nm-applet --sm-disable &
+exec_always xrdb ~/.Xresources
+exec --no-startup-id udiskie --tray
+exec --no-startup-id check-channel-update.sh --loop
+# exec_always conky -c /home/jarvis/dotfiles/.config/i3/toggle_conkyrc | lemonbar -d -p -g "1700x20+140" -B "#272822" -F "#a0a0a0" -f "InputMono:size=11" -f "FontAwesome:size=13" | while read line; do eval "$line"; done 
+
+## Appearance
+hide_edge_borders both
+
+## Make me float!
+# when using name=sth in urxvt here we mean `instance`
+for_window [instance="scratchpad"] floating enable
+for_window [instance="rangerfloat"] floating enable
+for_window [instance="Edit_with_Emacs_FRAME"] floating enable
+for_window [instance="emacs-capture"] floating enable
+for_window [instance="emacs-agenda"] floating enable
+# for_window [title="\*magit:.*\*$"] floating enable
+for_window [class="mpv"] floating enable
+for_window [class="Steam"] floating enable
+for_window [class="Zeal"] floating enable
+for_window [title=".dmenuEextended_shellCommand.sh"] floating enable
+for_window [instance="Minibuf"] floating enable
+# bindsym $mod+g [instance="scratchpad"] scratchpad show
+# -*- mode:conf -*-
+set $background #263238
+set $foreground #CDD3D3
+set $focused_background #C2E982
+set $active_background #4F4F4F
+set $normal_background #F1F1F1# -*- mode:conf -*-
 # start a terminal
 bindsym $mod+Return exec urxvt
 
@@ -114,88 +180,97 @@ bindsym $mod+Escape restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+Escape exit
 
-
-
-
-# Resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym q mode "default"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym Ctrl+g mode "default"
-}
-
-bindsym $mod+Mod1+r mode "resize"
-
+# Split and open EmacsClient
 bindsym $mod+Control+l split h; exec emacsclient -c -n;
 bindsym $mod+Control+j split v; exec emacsclient -c -n;
-# Start i3bar to display a workspace bar (plus the system information i3status
-# Finds out, if available)
-# set $background #272822
-# set $foreground #C0B18B
-# set $focused_background #C0B18B
-set $background #263238
-set $foreground #CDD3D3
-set $focused_background #C2E982
-set $active_background #4F4F4F
-set $normal_background #F1F1F1
-bar {
-        # status_command ~/.config/i3status/custom_bar.sh
-        status_command ~/.config/i3/conky-i3bar
-        # status_command i3status
-        strip_workspace_numbers yes
-        position top
-        modifier Mod1
-        separator_symbol " "
-        colors {
-            background $background
-            statusline $foreground
-            separator #FF0000
+# -*- mode:conf -*-
+## bar
+bindsym $mod+n bar hidden_state toggle
+bindsym $mod+m bar mode toggle
 
-            focused_workspace  #4c7899 #285577 #ffffff
-            active_workspace   #333333 #5f676a #ffffff
-            inactive_workspace #333333 #222222 #888888
-            urgent_workspace   #2f343a #900000 #ffffff
-        }
+## Workspaces
+workspace_auto_back_and_forth yes
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
+## Keyboard Layout
+bindsym $mod+Shift+d exec setxkbmap -layout us
+bindsym $mod+Shift+s exec setxkbmap -layout es
+
+## Special Keys
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master 100%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute && killall -SIGUSR1 i3status
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute && killall -SIGUSR1 i3status
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ unmute && killall -SIGUSR1 i3status
+
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym Shift+XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+bindsym Shift+XF86AudioStop exec mpc stop
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym Shift+XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym Shift+XF86AudioPrev exec mpc prev
+
+## Mouse
+focus_follows_mouse no
+bindsym --release button8 workspace prev
+bindsym --release button9 workspace next
+
+# Screenshots!
+bindsym Print exec imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga
+bindsym $mod+Print exec record-window
+bindsym $mod+Shift+Print exec record-region
+
+# Scratchpad Terminal
+bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap  || urxvt -name scratchpad -geometry 80x10 & 
+
+#Scratchpad ranger
+bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || urxvt -name rangerfloat -geometry 180x30 -depth 0 -e ranger & 
+# -*- mode:conf -*-
+set $applaunch "Launch: (e)macs (g)oogle-chrome"
+mode $applaunch {
+    bindsym e exec emacs; mode "default"
+    bindsym Shift+e exec emacsclient -c -n; mode "default"
+    bindsym g exec google-chrome; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
 }
-##### Custom stuff ######
-# exec xrdb ~/.Xresources
-# exec xset +fp ~/.fonts
-# exec xset +fp /usr/share/fonts/ttf
-# exec xset fp rehash
-exec_all --no-startup-id wmname LG3D
-exec --no-startup-id feh --bg-scale ~/Pictures/9q4Odsw.jpg
-exec emacs
-# exec /opt/extras.ubuntu.com/variety/bin/variety
-exec dropbox start
-exec touchegg
-exec compton
-exec setxkbmap -option 'ctrl:no caps'
-exec --no-startup-id nm-applet
-# exec nm-applet --sm-disable &
-exec_always xrdb ~/.Xresources
-exec --no-startup-id udiskie --tray
-exec --no-startup-id check-channel-update.sh --loop
-# exec_always conky -c /home/jarvis/dotfiles/.config/i3/toggle_conkyrc | lemonbar -d -p -g "1700x20+140" -B "#272822" -F "#a0a0a0" -f "InputMono:size=11" -f "FontAwesome:size=13" | while read line; do eval "$line"; done 
+bindsym --release $mod+Shift+p  mode $applaunch
+# -*- mode:conf -*-
+## Emacs Agenda
+set $emacs-agenda "Emacs Agenda:  (A)genda  (T)odos  (L)inks"
+mode $emacs-agenda {
+    bindsym a exec emacs-agenda --eval '(org-agenda nil "a")'; mode "default"
+    bindsym t exec emacs-agenda --eval '(org-agenda nil "t")'; mode "default"
+    bindsym l exec emacs-agenda --eval '(org-agenda nil "l")'; mode "default"
 
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+a  mode $emacs-agenda
+bindsym $mod+mod1+space exec emacs-agenda --eval '(org-agenda)'
+# -*- mode:conf -*-
+## Emacs Capture!
+set $emacs-capture "Emacs Capture:  (T)odo  (I)dea  (L)ink"
+mode $emacs-capture {
+    bindsym t exec emacs-capture --eval '(org-capture nil "t")'; mode "default"
+    bindsym l exec emacs-capture --eval '(org-capture nil "l")'; mode "default"
+    bindsym i exec emacs-capture --eval '(org-capture nil "i")'; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+x  mode $emacs-capture
+bindsym $mod+Control+space exec emacs-capture --eval '(org-capture)'
+# -*- mode:conf -*-
 ## Enable the Gaps!!
 # Ugly Fix to now show borders
 for_window [class="^.*"] border pixel 0
@@ -247,113 +322,35 @@ for_window [class="^.*"] border pixel 0
 #         bindsym Ctrl+g mode "default"
 #         bindsym Escape mode "default"
 # }
-## Appearance
-hide_edge_borders both
+# -*- mode:conf -*-
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
 
-## Make me float!
-# when using name=sth in urxvt here we mean `instance`
-for_window [instance="scratchpad"] floating enable
-for_window [instance="rangerfloat"] floating enable
-for_window [instance="Edit_with_Emacs_FRAME"] floating enable
-for_window [instance="emacs-capture"] floating enable
-for_window [instance="emacs-agenda"] floating enable
-# for_window [title="\*magit:.*\*$"] floating enable
-for_window [class="mpv"] floating enable
-for_window [class="Steam"] floating enable
-for_window [class="Zeal"] floating enable
-for_window [title=".dmenuEextended_shellCommand.sh"] floating enable
-for_window [instance="Minibuf"] floating enable
-# bindsym $mod+g [instance="scratchpad"] scratchpad show
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-## bar
-bindsym $mod+n bar hidden_state toggle
-bindsym $mod+m bar mode toggle
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
-## Workspaces
-workspace_auto_back_and_forth yes
-bindsym $mod+bracketright workspace next
-bindsym $mod+bracketleft workspace prev
-
-## Keyboard Layout
-bindsym $mod+Shift+d exec setxkbmap -layout us
-bindsym $mod+Shift+s exec setxkbmap -layout es
-
-## Special Keys
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-bindsym XF86AudioMute exec --no-startup-id amixer -q set Master 100%- unmute && killall -SIGUSR1 i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute && killall -SIGUSR1 i3status
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- unmute && killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute && killall -SIGUSR1 i3status
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ unmute && killall -SIGUSR1 i3status
-
-bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-bindsym Shift+XF86AudioPlay exec mpc toggle
-bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
-bindsym Shift+XF86AudioStop exec mpc stop
-bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-bindsym Shift+XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-bindsym Shift+XF86AudioPrev exec mpc prev
-
-## Mouse
-focus_follows_mouse no
-bindsym --release button8 workspace prev
-bindsym --release button9 workspace next
-
-# Screenshots!
-bindsym Print exec imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga
-bindsym $mod+Print exec record-window
-bindsym $mod+Shift+Print exec record-region
-
-# Scratchpad Terminal
-bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap  || urxvt -name scratchpad -geometry 80x10 & 
-
-# Emacs popups!
-## Emacs Capture!
-set $emacs-capture "Emacs Capture:  (T)odo  (I)dea  (L)ink"
-mode $emacs-capture {
-    bindsym t exec emacs-capture --eval '(org-capture nil "t")'; mode "default"
-    bindsym l exec emacs-capture --eval '(org-capture nil "l")'; mode "default"
-    bindsym i exec emacs-capture --eval '(org-capture nil "i")'; mode "default"
-
-    bindsym q mode "default"
-    bindsym Ctrl+g mode "default"
-    bindsym Return mode "default"
+        # back to normal: Enter or Escape
+        bindsym q mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Ctrl+g mode "default"
 }
-bindsym --release $mod+Shift+x  mode $emacs-capture
-bindsym $mod+Control+space exec emacs-capture --eval '(org-capture)'
-
-## Emacs Agenda
-set $emacs-agenda "Emacs Agenda:  (A)genda  (T)odos  (L)inks"
-mode $emacs-agenda {
-    bindsym a exec emacs-agenda --eval '(org-agenda nil "a")'; mode "default"
-    bindsym t exec emacs-agenda --eval '(org-agenda nil "t")'; mode "default"
-    bindsym l exec emacs-agenda --eval '(org-agenda nil "l")'; mode "default"
-
-    bindsym q mode "default"
-    bindsym Ctrl+g mode "default"
-    bindsym Return mode "default"
-}
-bindsym --release $mod+Shift+a  mode $emacs-agenda
-bindsym $mod+mod1+space exec emacs-agenda --eval '(org-agenda)'
-
-#Scratchpad ranger
-bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || urxvt -name rangerfloat -geometry 180x30 -depth 0 -e ranger & 
-set $applaunch "Launch: (e)macs (g)oogle-chrome"
-mode $applaunch {
-    bindsym e exec emacs; mode "default"
-    bindsym Shift+e exec emacsclient -c -n; mode "default"
-    bindsym g exec google-chrome; mode "default"
-
-    bindsym q mode "default"
-    bindsym Ctrl+g mode "default"
-    bindsym Return mode "default"
-}
-bindsym --release $mod+Shift+p  mode $applaunch
-
+bindsym $mod+Mod1+r mode "resize"
+# -*- mode:conf -*-
 set $session " (E)xit  (L)ock  (P)oweroff  (R)eboot"
-
 mode $session {
     bindsym Shift+e exec $psst i3-msg exit; mode "default"
     bindsym Shift+l exec $psst ~/.config/i3/lock.sh; mode "default"
@@ -364,5 +361,4 @@ mode $session {
     bindsym Ctrl+g mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+F1 mode $session

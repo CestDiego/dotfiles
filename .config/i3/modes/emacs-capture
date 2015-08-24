@@ -1,0 +1,14 @@
+# -*- mode:conf -*-
+## Emacs Capture!
+set $emacs-capture "Emacs Capture:  (T)odo  (I)dea  (L)ink"
+mode $emacs-capture {
+    bindsym t exec emacs-capture --eval '(org-capture nil "t")'; mode "default"
+    bindsym l exec emacs-capture --eval '(org-capture nil "l")'; mode "default"
+    bindsym i exec emacs-capture --eval '(org-capture nil "i")'; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+x  mode $emacs-capture
+bindsym $mod+Control+space exec emacs-capture --eval '(org-capture)'

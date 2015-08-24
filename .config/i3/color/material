@@ -1,0 +1,6 @@
+# -*- mode:conf -*-
+set $background #263238
+set $foreground #CDD3D3
+set $focused_background #C2E982
+set $active_background #4F4F4F
+set $normal_background #F1F1F1
