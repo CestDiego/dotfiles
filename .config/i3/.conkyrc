@@ -52,7 +52,7 @@ ${exec ~/bin/spotify-control getAlbum}} ",
 ${endif}
 ${if_match "$nodename" == "nixos"} \
     { "full_text" : "$if_mpd_playing  ${mpd_smart 75}   $endif"}, ${endif}
-{ "full_text" : "    ${battery BAT0}"},
+{ "full_text" : "  ${battery BAT0}"},
 # {"full_text": " Temp: ${exec sensors | grep 'temp1' | cut -c1-9 | sed '/^$/d' }°C "},
-{"full_text": "Up: ${uptime_short}"},
-{ "full_text" : "    ${time %H:%M} - ${time %b %d} " }],
+{"full_text": "  ${uptime_short}"},
+{ "full_text" : "  ${time %b %d}  ${time %H:%M} " }],
