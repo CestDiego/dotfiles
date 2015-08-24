@@ -1,6 +1,0 @@
-#!/bin/sh
-
-(cd ~/.config/i3;
- cat base > config;
- cat color/material >> config;
- cat keybindings/* modes/* >> config)
