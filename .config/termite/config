@@ -1,0 +1,7 @@
+[options]
+font = FontAwesome 12
+font = InputMono 10
+
+[colors]
+foreground = #CDD3D3
+background = #263238
