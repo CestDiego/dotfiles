@@ -1,0 +1,1 @@
+export BGCOLOR="#263238"
