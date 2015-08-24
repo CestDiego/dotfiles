@@ -253,6 +253,7 @@ for_window [instance="scratchpad"] floating enable
 for_window [instance="rangerfloat"] floating enable
 for_window [instance="Edit_with_Emacs_FRAME"] floating enable
 for_window [instance="emacs-capture"] floating enable
+for_window [instance="emacs-agenda"] floating enable
 # for_window [title="\*magit:.*\*$"] floating enable
 for_window [class="mpv"] floating enable
 for_window [class="Steam"] floating enable
@@ -305,8 +306,34 @@ bindsym $mod+Shift+Print exec record-region
 # Scratchpad Terminal
 bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap  || urxvt -name scratchpad -geometry 80x10 & 
 
-# Emacs Capture!
-bindsym $mod+space emacs-capture -e "(org-capture nil \"l\")"
+# Emacs popups!
+## Emacs Capture!
+set $emacs-capture "Emacs Capture:  (T)odo  (I)dea  (L)ink"
+mode $emacs-capture {
+    bindsym t exec emacs-capture --eval '(org-capture nil "t")'; mode "default"
+    bindsym l exec emacs-capture --eval '(org-capture nil "l")'; mode "default"
+    bindsym i exec emacs-capture --eval '(org-capture nil "i")'; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+x  mode $emacs-capture
+bindsym $mod+Control+space exec emacs-capture --eval '(org-capture)'
+
+## Emacs Agenda
+set $emacs-agenda "Emacs Agenda:  (A)genda  (T)odos  (L)inks"
+mode $emacs-agenda {
+    bindsym a exec emacs-agenda --eval '(org-agenda nil "a")'; mode "default"
+    bindsym t exec emacs-agenda --eval '(org-agenda nil "t")'; mode "default"
+    bindsym l exec emacs-agenda --eval '(org-agenda nil "l")'; mode "default"
+
+    bindsym q mode "default"
+    bindsym Ctrl+g mode "default"
+    bindsym Return mode "default"
+}
+bindsym --release $mod+Shift+a  mode $emacs-agenda
+bindsym $mod+mod1+space exec emacs-agenda --eval '(org-agenda)'
 
 #Scratchpad ranger
 bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || urxvt -name rangerfloat -geometry 180x30 -depth 0 -e ranger & 

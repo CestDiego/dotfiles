@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+emacsclient -c -F "((name . \"emacs-agenda\") (height . 30) (width . 80))" "$@"
