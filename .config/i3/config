@@ -149,9 +149,12 @@ bindsym $mod+Control+l split h; exec emacsclient -c -n;
 bindsym $mod+Control+j split v; exec emacsclient -c -n;
 # Start i3bar to display a workspace bar (plus the system information i3status
 # Finds out, if available)
-set $background #272822
-set $foreground #C0B18B
-set $focused_background #C0B18B
+# set $background #272822
+# set $foreground #C0B18B
+# set $focused_background #C0B18B
+set $background #263238
+set $foreground #CDD3D3
+set $focused_background #C2E982
 set $active_background #4F4F4F
 set $normal_background #F1F1F1
 bar {
