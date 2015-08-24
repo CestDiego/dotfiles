@@ -35,6 +35,24 @@ cpu_avg_samples 1
 # Stuff after 'TEXT' will be formatted on screen
 TEXT
 # JSON for i3bar
- [${if_match "$nodename" == "nixos"} { "full_text" : "$if_mpd_playing  ${mpd_smart 75}   $endif"}, ${endif}
+[
+${if_match "${exec ~/bin/spotify-control getStatus}"!="Spotify is not running"} \
+    {
+        "full_text": "${scroll 40 \
+${exec ~/bin/spotify-control getArtist} - \
+${exec ~/bin/spotify-control getTitle} / \
+${exec ~/bin/spotify-control getAlbum}} ",
+        "color":
+            ${if_match "${exec ~/bin/spotify-control getStatus}"=="Playing"}"\#C2E982"${else}
+                ${if_match "${exec ~/bin/spotify-control getStatus}"=="Paused"}"\#F77669"${else}
+                    "\#CC0000"
+                ${endif}
+            ${endif} 
+    },
+${endif}
+${if_match "$nodename" == "nixos"} \
+    { "full_text" : "$if_mpd_playing  ${mpd_smart 75}   $endif"}, ${endif}
 { "full_text" : "    ${battery BAT0}"},
-{ "full_text" : "    ${time %d %b} / ${time %H:%M}" }],
+# {"full_text": " Temp: ${exec sensors | grep 'temp1' | cut -c1-9 | sed '/^$/d' }°C "},
+{"full_text": "Up: ${uptime_short}"},
+{ "full_text" : "    ${time %H:%M} - ${time %b %d} " }],
