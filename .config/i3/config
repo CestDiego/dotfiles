@@ -19,7 +19,12 @@ bar {
         colors {
             background $background
             statusline $foreground
-            separator #FF0000
+            separator $
+            # Colors            border    backgr   text
+            # focused_workspace	  $white	 	$white		$black
+            # active_workspace	  #073642 	#073642 	#696f89
+            # inactive_workspace	#073642 	#073642     $white
+            # urgent_workspace  	$orange		$orange		$dark
 
             focused_workspace  #4c7899 #285577 #ffffff
             active_workspace   #333333 #5f676a #ffffff
@@ -359,8 +364,6 @@ mode $session {
 bindsym $mod+F1 mode $session
 #Colors:
 # -*- mode:conf -*-
-set $background #263238
-set $foreground #eceff1
-set $focused_background #03a9f4
-set $active_background #81d4fa
-set $normal_background #eceff1
+set $background #272822
+set $foreground #F8F8F2
+set $dark_grey  #F8F8F2
