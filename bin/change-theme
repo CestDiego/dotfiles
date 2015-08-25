@@ -1,0 +1,62 @@
+#!/bin/sh
+
+(cd ~/.config/i3;
+ cat base > config;
+ cat keybindings/* >> config;
+ cat modes/* >> config;
+ cat <<EOF >>config
+#Colors:
+# -*- mode:conf -*-
+set \$background $BACKGROUND
+set \$foreground $FOREGROUND
+set \$dark_grey  $DARK_GREY
+EOF
+ echo "i3 configuration has been assembled";
+ i3-msg reload)
+
+(cd ~/.config/termite;
+ cat base > config;
+ cat <<EOF >> config
+[colors]
+
+# special
+foreground      = $FOREGROUND
+foreground_bold = $FOREGROUND
+cursor          = $FOREGROUND
+background      = $BACKGROUND
+
+# black
+color0  = $BACKGROUND
+color8  = $DARK_GREY
+
+# red
+color1  = $DARK_RED
+color9  = $LIGHT_RED
+
+# green
+color2  = $DARK_GREEN
+color10 = $LIGHT_GREEN
+
+# yellow
+color3  = $DARK_YELLOW
+color11 = $LIGHT_YELLOW
+
+# blue
+color4  = $DARK_BLUE
+color12 = $LIGHT_BLUE
+
+# magenta
+color5  = $DARK_MAGENTA
+color13 = $LIGHT_MAGENTA
+
+# cyan
+color6  = $DARK_CYAN
+color14 = $LIGHT_CYAN
+
+# white
+color7  = $LIGHT_GREY
+color15 = $FOREGROUND
+EOF
+ # tell all termites to reload their theme:
+ killall -s USR1 termite;)
+

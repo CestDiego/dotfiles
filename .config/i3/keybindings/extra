@@ -1,0 +1,47 @@
+# -*- mode:conf -*-
+## bar
+bindsym $mod+n bar hidden_state toggle
+bindsym $mod+m bar mode toggle
+
+## Workspaces
+workspace_auto_back_and_forth yes
+bindsym $mod+bracketright workspace next
+bindsym $mod+bracketleft workspace prev
+
+## Keyboard Layout
+bindsym $mod+Shift+d exec setxkbmap -layout us
+bindsym $mod+Shift+s exec setxkbmap -layout es
+
+## Special Keys
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master 100%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 10%- unmute && killall -SIGUSR1 i3status
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%- unmute && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 10%+ unmute && killall -SIGUSR1 i3status
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+ unmute && killall -SIGUSR1 i3status
+
+bindsym XF86AudioPlay exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+bindsym Shift+XF86AudioPlay exec mpc toggle
+bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop
+bindsym Shift+XF86AudioStop exec mpc stop
+bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym Shift+XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym Shift+XF86AudioPrev exec mpc prev
+
+## Mouse
+focus_follows_mouse no
+bindsym --release button8 workspace prev
+bindsym --release button9 workspace next
+
+# Screenshots!
+bindsym Print exec imgur-screenshot && mplayer /usr/share/sounds/freedesktop/stereo/screen-capture.oga
+bindsym $mod+Print exec record-window
+bindsym $mod+Shift+Print exec record-region
+
+# Scratchpad Terminal
+bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpad windowunmap || xdotool search --classname scratchpad windowmap  || termite --name scratchpad --geometry=1033x80 
+
+#Scratchpad ranger
+bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || termite --name rangerfloat --geometry=1033x760 -e ranger &
