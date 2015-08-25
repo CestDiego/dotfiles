@@ -1,40 +1,5 @@
 #!/bin/sh
 
-THEME_NAME=${1}
-
-# . ~/.config/bspwm/themes/base.bspwm_theme $THEME_NAME
-
-# Termite Configuration!
-rm ~/.config/termite/config
-ln -s ~/.config/termite/themes/${THEME_NAME}.config ~/.config/termite/config
-
-
-getTermColor() {
-    echo -n "$( cat ~/.config/termite/themes/${THEME_NAME}.config | grep  "$1" | head -n 1 | grep -oE "#[a-zA-Z0-9]{6}" | cut -c 2- )";
-}
-
-export THEME_NAME
-
-
-export BACKGROUND=$(getTermColor background)
-export FOREGROUND=$(getTermColor foreground)
-export LIGHT_BLACK=$(getTermColor color0)
-export LIGHT_RED=$(getTermColor color1)
-export LIGHT_GREEN=$(getTermColor color2)
-export LIGHT_YELLOW=$(getTermColor color3)
-export LIGHT_BLUE=$(getTermColor color4)
-export LIGHT_MAGENTA=$(getTermColor color5)
-export LIGHT_CYAN=$(getTermColor color6)
-export LIGHT_WHITE=$(getTermColor color7)
-export DARK_BLACK=$(getTermColor color8)
-export DARK_RED=$(getTermColor color9)
-export DARK_GREEN=$(getTermColor color10)
-export DARK_YELLOW=$(getTermColor color11)
-export DARK_BLUE=$(getTermColor color12)
-export DARK_MAGENTA=$(getTermColor color13)
-export DARK_CYAN=$(getTermColor color14)
-export DARK_WHITE=$(getTermColor color15)
-
 (cd ~/.config/i3;
  cat base > config;
  cat keybindings/* >> config;
@@ -42,14 +7,56 @@ export DARK_WHITE=$(getTermColor color15)
  cat <<EOF >>config
 #Colors:
 # -*- mode:conf -*-
-set \$background #$(getTermColor background)
-set \$foreground #$(getTermColor foreground)
-set \$focused_background #$(getTermColor color4)
-set \$active_background #$(getTermColor color12)
-set \$normal_background #$(getTermColor color15)
+set \$background $BACKGROUND
+set \$foreground $FOREGROUND
+set \$dark_grey  $DARK_GREY
 EOF
  echo "i3 configuration has been assembled";
  i3-msg reload)
 
-# tell all termites to reload their theme:
-killall -s USR1 termite &
+(cd ~/.config/termite;
+ cat base > config;
+ cat <<EOF >> config
+[colors]
+
+# special
+foreground      = $FOREGROUND
+foreground_bold = $FOREGROUND
+cursor          = $FOREGROUND
+background      = $BACKGROUND
+
+# black
+color0  = $BACKGROUND
+color8  = $DARK_GREY
+
+# red
+color1  = $DARK_RED
+color9  = $LIGHT_RED
+
+# green
+color2  = $DARK_GREEN
+color10 = $LIGHT_GREEN
+
+# yellow
+color3  = $DARK_YELLOW
+color11 = $LIGHT_YELLOW
+
+# blue
+color4  = $DARK_BLUE
+color12 = $LIGHT_BLUE
+
+# magenta
+color5  = $DARK_MAGENTA
+color13 = $LIGHT_MAGENTA
+
+# cyan
+color6  = $DARK_CYAN
+color14 = $LIGHT_CYAN
+
+# white
+color7  = $LIGHT_GREY
+color15 = $FOREGROUND
+EOF
+ # tell all termites to reload their theme:
+ killall -s USR1 termite;)
+
