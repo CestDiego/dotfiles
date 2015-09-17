@@ -1,4 +1,5 @@
-full_text=
+# full_text=
+full_text= 
 align=center
 separator=false
 separator_block_width=7
@@ -39,3 +40,17 @@ command=date '+%d/%m/%y'
 interval=3600
 
 [separator]
+
+[temperature]
+label=
+command=~/dotfiles/.config/i3blocks-contrib/temperature/temperature
+interval=10
+
+[separator]
+
+[batterybar]
+command=~/dotfiles/.config/i3blocks-contrib/batterybar/batterybar #run batterybar -h for options
+label=bat:
+interval=5
+markup=pango
+min_width=bat: ■■■■■
