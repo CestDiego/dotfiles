@@ -1,9 +1,10 @@
 # -*- mode:conf -*-
-set $applaunch "Launch: (e)macs (g)oogle-chrome"
+set $applaunch "Launch: (e)macs (c)hrome (s)potify"
 mode $applaunch {
     bindsym e exec emacs; mode "default"
     bindsym Shift+e exec emacsclient -c -n; mode "default"
-    bindsym g exec google-chrome; mode "default"
+    bindsym c exec chromium; mode "default"
+    bindsym s exec spotify; mode "default"
 
     bindsym q mode "default"
     bindsym Ctrl+g mode "default"

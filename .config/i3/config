@@ -2,7 +2,7 @@
 set $mod Mod4
 set $psst --no-startup-id
 
-font pango:FontAwesome, InputMono 12
+font pango:FontAwesome, Hack 12
 
 floating_modifier $mod
 
@@ -10,7 +10,8 @@ floating_modifier $mod
 # Finds out, if available)
 bar {
         # status_command ~/.config/i3status/custom_bar.sh
-        status_command ~/.config/i3/conky-i3bar
+        # status_command ~/.config/i3/conky-i3bar
+        status_command i3blocks
         # status_command i3status
         strip_workspace_numbers yes
         position top
@@ -231,11 +232,12 @@ bindsym --release $mod+g exec xdotool search --onlyvisible --classname scratchpa
 #Scratchpad ranger
 bindsym --release $mod+Control+f exec xdotool search --onlyvisible --classname rangerfloat windowunmap || xdotool search --classname rangerfloat windowmap || termite --name rangerfloat --geometry=1033x760 -e ranger &
 # -*- mode:conf -*-
-set $applaunch "Launch: (e)macs (g)oogle-chrome"
+set $applaunch "Launch: (e)macs (c)hrome (s)potify"
 mode $applaunch {
     bindsym e exec emacs; mode "default"
     bindsym Shift+e exec emacsclient -c -n; mode "default"
-    bindsym g exec google-chrome; mode "default"
+    bindsym c exec chromium; mode "default"
+    bindsym s exec spotify; mode "default"
 
     bindsym q mode "default"
     bindsym Ctrl+g mode "default"
@@ -364,6 +366,6 @@ mode $session {
 bindsym $mod+F1 mode $session
 #Colors:
 # -*- mode:conf -*-
-set $background #272822
-set $foreground #F8F8F2
-set $dark_grey  #F8F8F2
+set $background #1f1f1f
+set $foreground #b2b2b2
+set $dark_grey  #b2b2b2

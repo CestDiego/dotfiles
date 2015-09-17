@@ -2,7 +2,7 @@
 set $mod Mod4
 set $psst --no-startup-id
 
-font pango:FontAwesome, InputMono 12
+font pango:FontAwesome, Hack 12
 
 floating_modifier $mod
 
@@ -10,7 +10,8 @@ floating_modifier $mod
 # Finds out, if available)
 bar {
         # status_command ~/.config/i3status/custom_bar.sh
-        status_command ~/.config/i3/conky-i3bar
+        # status_command ~/.config/i3/conky-i3bar
+        status_command i3blocks
         # status_command i3status
         strip_workspace_numbers yes
         position top

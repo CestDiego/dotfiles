@@ -1,5 +1,4 @@
 # -*- mode:conf -*-
-#ocean
 [options]
 scroll_on_output = false
 scroll_on_keystroke = true
@@ -9,7 +8,7 @@ allow_bold = false
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = InputMono 11
+font = Hack 12
 scrollback_lines = 10000
 search_wrap = true
 #icon_name = terminal

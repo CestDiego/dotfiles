@@ -1,9 +1,6 @@
 [submodule ".xmonad"]
 	path = .xmonad
 	url = git@github.com:CestDiego/xmonad-ubuntu.git
-[submodule "imgur-screenshot"]
-	path = imgur-screenshot
-	url = git@github.com:jomo/imgur-screenshot.git
 [submodule "rice"]
 	path = rice
 	url = git@github.com:janbrennen/rice.git
