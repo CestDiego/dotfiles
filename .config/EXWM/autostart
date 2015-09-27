@@ -3,7 +3,7 @@
 xrdb ~/.Xresources
 
 wmname LG3D
-stalonetray &
+# stalonetray &
 
 feh --bg-scale ~/Pictures/9q4Odsw.jpg
 
@@ -11,7 +11,7 @@ dropbox start &
 
 touchegg &
 
-compton &
+# compton &
 
 # Remap caps lock to left control. This is not strictly speaking
 # xmonad related, but it's handy if you're a vim user.
@@ -25,6 +25,9 @@ fi
 # Set fallback cursor
 xsetroot -cursor_name left_ptr
 
+# New York Zip Code
+xflux -z 10001
+
 # Set keyboard repeat rate
 xset r rate 200 60
 
@@ -34,4 +37,4 @@ export VISUAL=emacsclient
 export EDITOR="$VISUAL"
 
 # Finally launch emacs
-emacs
+exec dbus-launch --exit-with-session emacs --eval "(exwm-enable)"

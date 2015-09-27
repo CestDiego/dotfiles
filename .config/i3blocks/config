@@ -1,9 +1,9 @@
-# full_text=
-full_text= 
+full_text=
 align=center
 separator=false
 separator_block_width=7
 markup=pango
+command=$SCRIPT_DIR/$BLOCK_NAME
 
 [separator]
 
@@ -22,22 +22,12 @@ signal=1
 
 [separator]
 
-[time_label]
-full_text=
-color=#FFFFFF
-
-[time]
-command=date '+%H:%M' | sed 's/:/h/'
-interval=60
-
-[separator]
-
-[date_label]
-full_text=
-
-[date]
-command=date '+%d/%m/%y'
-interval=3600
+[batterybar]
+command=~/dotfiles/.config/i3blocks-contrib/batterybar/batterybar
+label=
+interval=5
+markup=pango
+min_width= ■■■■■
 
 [separator]
 
@@ -48,9 +38,22 @@ interval=10
 
 [separator]
 
-[batterybar]
-command=~/dotfiles/.config/i3blocks-contrib/batterybar/batterybar #run batterybar -h for options
-label=bat:
-interval=5
-markup=pango
-min_width=bat: ■■■■■
+[date]
+label=
+command=date '+%d/%m/%y'
+interval=3600
+
+[separator]
+
+[time]
+label=
+command=date '+%H:%M' | sed 's/:/h/'
+interval=60
+
+[separator]
+
+
+[meme]
+full_text=( ͡~ ͜ʖ ͡°)  
+
+[separator]

@@ -366,6 +366,6 @@ mode $session {
 bindsym $mod+F1 mode $session
 #Colors:
 # -*- mode:conf -*-
-set $background #1f1f1f
-set $foreground #b2b2b2
-set $dark_grey  #b2b2b2
+set $background #272822
+set $foreground #F8F8F2
+set $dark_grey  #F8F8F2
