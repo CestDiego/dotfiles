@@ -3,7 +3,6 @@
 xhost +
 xinit
 
-
 wmname LG3D
 # stalonetray &
 
