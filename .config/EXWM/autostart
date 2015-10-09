@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-xrdb ~/.Xresources
+xhost +
+xinit
+
 
 wmname LG3D
 # stalonetray &

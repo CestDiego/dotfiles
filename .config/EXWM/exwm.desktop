@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=EXWM
+Comment=Emacs Window Manager
+Exec=sh -c /home/io/dotfiles/.config/EXWM/autostart
+Type=Application
