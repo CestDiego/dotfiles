@@ -1,5 +1,6 @@
 #include "/home/jarvis/.colors/s3r0"
-
+Emacs.FontBackend: xft,x
+Emacs.font: Knack PNFT Plus Font Awesome Plu:size=19
 ! #########################################
 URxvt*perl-ext-common:		default,clipboard,font-size,keyboard-select,url-select
 URxvt*url-select.launcher: /run/current-system/sw/bin/xdg-open
