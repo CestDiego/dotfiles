@@ -6,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="bullet-train"
-ZSH_THEME="jonathan"
+ZSH_THEME="arrow"
 # ZSH_THEME="afowler"
 
 
@@ -147,3 +147,7 @@ export BULLETTRAIN_PROMPT_CHAR="ƛ"
 export DEBFULLNAME="Diego Berrocal"
 export DEBEMAIL="cestdiego@gmail.com"
 
+export EDITOR="ect"
+
+
+export PROMPT='%{$fg[$NCOLOR]%}%c ƛ %{$reset_color%}'
