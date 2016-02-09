@@ -89,46 +89,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-alias zshconfig="emacsclient -t ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias zshsrc="source ~/.zshrc"
-
-alias plz='eval sudo "$(fc -nl -1)"'
-alias search='ps aux | grep '
-alias sudo="sudo "
-
-alias ec="emacsclient -n "
-alias ect="emacsclient -t "
-alias ecc="emacsclient -nc"
-
-alias sleeptight="sudo shutdown -r now"
-alias this="nautilus ."
-alias show="google-chrome-stable "
-alias ls='ls --color=auto'
-alias nethack='telnet nethack.alt.org'
-alias kboff='echo "0" | sudo tee -a /sys/devices/platform/asus-nb-wmi/leds/asus::kbd_backlight/brightness > /dev/null'
-alias asdf='sudo apt-get update && sudo apt-get upgrade -y'
-
-##### SSH SESSIONS!! YEAAAH
-alias hackspace='ssh core-beja'
-alias gmat='ssh gmat'
-
-##### Alias for Computing Canada SHARCNET servers!
-alias requin='ssh -Y -i ~/.ssh/id_rsa diego@requin.sharcnet.ca'
-alias saw='ssh -Y -oStrictHostKeyChecking=no -i ~/.ssh/id_rsa diego@saw.sharcnet.ca'
-alias orca='ssh -Y -i ~/.ssh/id_rsa diego@orca.sharcnet.ca'
-alias bramble='ssh -Y -i ~/.ssh/id_rsa diego@bramble.sharcnet.ca'
-alias kraken='ssh -Y -i ~/.ssh/id_rsa diego@kraken.sharcnet.ca'
-alias scinet='ssh -l diego login.scinet.utoronto.ca'
-alias wobbie='ssh -Y -i ~/.ssh/id_rsa diego@wobbie.sharcnet.ca'
-alias viz8='ssh -Y -i ~/.ssh/id_rsa diego@viz8-uwo.sharcnet.ca'
-
-alias burn='sudo -i nixos-rebuild switch'
-alias buzz='pushblast "sudo -i nixos-rebuild switch"'
-alias nrep='nix-env -qaP --description | grep '
-alias lrep='ls -lha | grep '
 
 ur_setup() {
     eval `/home/io/.ureka/ur_setup -sh $*`
@@ -137,6 +97,8 @@ ur_forget() {
     eval `/home/io/.ureka/ur_forget -sh $*`
 }
 
+
+source ~/.alias
 
 export BULLETTRAIN_DIR_SHOW=false
 export BULLETTRAIN_PROMPT_CHAR="ƛ"
