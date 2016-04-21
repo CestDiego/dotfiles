@@ -8,9 +8,7 @@ alias plz='eval sudo "$(fc -nl -1)"'
 alias search='ps aux | grep '
 alias sudo="sudo "
 
-alias ec="emacsclient -n "
-alias ect="emacsclient -t "
-alias ecc="emacsclient -nc"
+alias magit='ec -e "(magit-status \"$(pwd)\")"'
 
 alias sleeptight="sudo shutdown -r now"
 alias this="nautilus ."
