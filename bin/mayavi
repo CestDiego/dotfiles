@@ -1,5 +1,0 @@
-#!/bin/sh
-HORTONPATH=$HOME/horton
-export PYTHONPATH=$HORTONPATH
-export HORTONDATA=$HORTONPATH/data
-/usr/bin/mayavi2 &
