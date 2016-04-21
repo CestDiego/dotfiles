@@ -81,12 +81,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 function npm ()
 {
     if [ "${PWD##/Users/dberrocal/Documents/ebay}" != "${PWD}" ]; then
-        echo 'Using ebay npm'
-        sleep 0.1;
-        command npm ${@} --registry https://registry.npmjs.org/
-    else
-        echo 'Using normal npm'
-        sleep 0.1;
         command npm ${@}
+    else
+        command npm ${@}  --registry https://registry.npmjs.org/
     fi;
 }
