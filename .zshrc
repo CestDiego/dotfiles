@@ -68,7 +68,7 @@ source ~/.profile
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # export JAVA_HOME=/Users/dberrocal/Downloads/ride-5.1.2-mac64/OpenJDK-1.7.0_45/Contents/Home
 
-nvm use 0.10 > /dev/null
+nvm use 4.2.3 > /dev/null
 ######################################################################
 ######################### Python Environment  ########################
 ######################################################################
