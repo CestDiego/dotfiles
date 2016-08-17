@@ -76,8 +76,6 @@ nvm use 4.2.3 > /dev/null
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 function npm ()
 {
     if [ "${PWD##/Users/dberrocal/Documents/ebay}" != "${PWD}" ]; then
@@ -86,3 +84,23 @@ function npm ()
         command npm ${@}  --registry https://registry.npmjs.org/
     fi;
 }
+
+function spt ()
+{
+    cd ~/Documents/ebay/rctapp/
+    nvm use
+    rm -rf ~/Documents/ebay/rctapp/{.cache,.beans}
+    PORT=8003 SSLPORT=8083 grunt start-server
+}
+
+function highline ()
+{
+    cd ~/Documents/ebay/highline-web/
+    nvm use
+    rm -rf ~/Documents/ebay/highline-web/{.cache,.beans}
+    npm start
+}
+
+alias zk="kill -9 %1"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
