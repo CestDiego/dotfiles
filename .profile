@@ -33,7 +33,7 @@ export PATH="$PATH:/Users/dberrocal/Programs/ride-5.2.1-mac64/apache-tomcat-7.0.
 export GTAGSLABEL=pygments
 
 export GOPATH=$HOME/.go-workspace
-export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin:
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
