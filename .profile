@@ -30,11 +30,16 @@ export JAVA_HOME="/Users/dberrocal/Programs/ride-5.1.2-mac64/OracleJDK-1.7.0_45/
 
 export PATH="$PATH:/Users/dberrocal/Programs/ride-5.2.1-mac64/apache-maven-3.1.1/bin/"
 export PATH="$PATH:/Users/dberrocal/Programs/ride-5.2.1-mac64/apache-tomcat-7.0.64_4/bin/"
+
+# Android Sdk and PATH for binaries
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH="$PATH:/Users/dberrocal/Library/Android/sdk/platform-tools/"
+
 export GTAGSLABEL=pygments
 
 export GOPATH=$HOME/.go-workspace
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:`yarn global bin`" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
