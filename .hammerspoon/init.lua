@@ -1,63 +1,37 @@
--- Reload Automatically
-function reloadConfig(files)
-    doReload = false
-    for _,file in pairs(files) do
-      if file:sub(-4) == ".lua" and file:sub(2) ~= ".#" then
-            doReload = true
-        end
-    end
-    if doReload then
-        hs.reload()
-    end
+loggerInfo = hs.logger.new("My Settings", "info")
+
+hyper = { "cmd", "alt", "shift", "ctrl" }
+
+-- A global variable for the sub-key Hyper Mode
+f18 = hs.hotkey.modal.new({}, "F18")
+
+-- Hyper+key bindings for external handlers
+-- extHyperBindings = {"a", "o", "u", "e", "j", "k", "p", ",", ".", "space"}
+
+-- for i, v in ipairs(extHyperBindings) do
+--   f18:bind({}, v, function()
+--         -- Pressed:
+--         hs.eventtap.event.newKeyEvent(hyper, v, true):post()
+--       end, function()
+--         -- Released:
+--         hs.eventtap.event.newKeyEvent(hyper, v, false):post()
+--         f18.triggered = true
+--       end)
+-- end
+
+-- Hyper+key bindings for external handlers
+controlBindings = {"a", "e", "[", "g"}
+
+for i, v in ipairs(controlBindings) do
+  f18:bind({}, v, nil, function()
+        -- Released:
+        hs.eventtap.keyStroke({"ctrl"}, v)
+        f18.triggered = true
+      end)
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.alert.show("Config loaded")
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "W", function()
-  hs.alert.show("lelwat")
-end)
-
---[[
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "W", function()
-  hs.notify.new({title="Hammerspoon", informativeText="Hello World"}):send()
-end)
---]]
-
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "UP", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  f.y = f.y - 10
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "LEFT", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  f.x = f.x - 10
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "RIGHT", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  f.x = f.x + 10
-  win:setFrame(f)
-end)
-
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "DOWN", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-
-  f.y = f.y + 10
-  win:setFrame(f)
-end)
-
-
--- WINDOW SIZING
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "H", function()
+-- Window Sizing
+f18.bind({}, "h", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -70,7 +44,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "H", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "L", function()
+f18.bind({}, "l", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -83,7 +57,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "L", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "K", function()
+f18.bind({}, "k", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -96,7 +70,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "K", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "J", function()
+f18.bind({}, "j", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -110,7 +84,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "J", function()
 end)
 
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "f", function()
+f18.bind({}, "f", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -123,66 +97,83 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "f", function()
   win:setFrame(f)
 end)
 
--- Safari control of Menus!
-function cycle_safari_agents()
-    hs.application.launchOrFocus("Safari")
-    local safari = hs.appfinder.appFromName("Safari")
+hdic = {
+  b="left",
+  f="right",
+  p="up",
+  n="down",
+  m="return"
+}
 
-    local str_default = {"Develop", "User Agent", "Default (Automatically Chosen)"}
-    local str_ie10 = {"Develop", "User Agent", "Internet Explorer 10.0"}
-    local str_chrome = {"Develop", "User Agent", "Google Chrome — Windows"}
-
-    local default = safari:findMenuItem(str_default)
-    local ie10 = safari:findMenuItem(str_ie10)
-    local chrome = safari:findMenuItem(str_chrome)
-
-    if (default and default["ticked"]) then
-        safari:selectMenuItem(str_ie10)
-        hs.alert.show("IE10")
-    end
-    if (ie10 and ie10["ticked"]) then
-        safari:selectMenuItem(str_chrome)
-        hs.alert.show("Chrome")
-    end
-    if (chrome and chrome["ticked"]) then
-        safari:selectMenuItem(str_default)
-        hs.alert.show("Safari")
-    end
-end
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, '7', cycle_safari_agents)
-
--- menubar
-
-local caffeine = hs.menubar.new()
-function setCaffeineDisplay(state)
-    if state then
-        caffeine:setTitle("AWAKE")
-    else
-        caffeine:setTitle("SLEEPY")
-    end
+for k, v in pairs(hdic) do
+  f18:bind({}, k, function()
+      -- Pressed:
+      hs.eventtap.event.newKeyEvent({}, v, true):post()
+    end, function()
+      -- Released:
+      hs.eventtap.event.newKeyEvent({}, v, false):post()
+      f18.triggered = true
+    end, function()
+      -- Repeat:
+      hs.eventtap.event.newKeyEvent({}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+    end)
 end
 
-function caffeineClicked()
-    setCaffeineDisplay(hs.caffeinate.toggle("displayIdle"))
+-- Enter Hyper Mode
+hyperPressed = function()
+  f18.triggered = false
+  f18:enter()
 end
 
-if caffeine then
-    caffeine:setClickCallback(caffeineClicked)
-    setCaffeineDisplay(hs.caffeinate.get("displayIdle"))
+-- Leave Hyper Mode when F19 (caps) is pressed,
+-- send ESCAPE if no other keys are pressed.
+f19Released = function()
+  f18:exit()
+  if not f18.triggered then
+    hs.eventtap.keyStroke({}, "escape")
+  end
 end
 
--- Application Watcher for watching purposes
-
-function applicationWatcher(appName, eventType, appObject)
-    if (eventType == hs.application.watcher.activated) then
-        if (appName == "Finder") then
-            -- Bring all Finder windows forward when one gets activated
-            appObject:selectMenuItem({"Window", "Bring All to Front"})
-        end
-    end
+-- Leave Hyper Mode when F20 (return) is pressed,
+-- send RETURN if no other keys are pressed.
+f20Released = function()
+  f18:exit()
+  if not f18.triggered then
+    hs.eventtap.keyStroke({}, "return")
+  end
 end
-local appWatcher = hs.application.watcher.new(applicationWatcher)
-appWatcher:start()
 
--- Fake keyboard events
-hs.hotkey.bind({"cmd", "alt"}, "V", function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
+-- Bind the Hyper key to F19
+hs.hotkey.bind({}, "F19", hyperPressed, f19Released)
+
+-- Bind the Hyper key to F20
+hs.hotkey.bind({}, "F20", hyperPressed, f20Released, function()
+  hs.eventtap.event.newKeyEvent({}, "return", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+end)
+
+hs.hotkey.bind({"ctrl"}, "F20", nil, function() hs.eventtap.keyStroke({"ctrl"}, "return") end)
+hs.hotkey.bind({"cmd"}, "F20", nil, function() hs.eventtap.keyStroke({"cmd"}, "return") end)
+hs.hotkey.bind({"shift"}, "F20", nil, function() hs.eventtap.keyStroke({"shift"}, "return") end)
+
+hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end)
+hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end)
+hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end)
+hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end)
+
+require 'reload-config'
+require 'caps-to-ctrl-and-esc'
+require 'emacs-PNBF'
+
+-- require 'caffeine'
+-- require 'clipboard'
+-- require 'launch-applications'
+-- require 'window-management'
+
+-- Lock System
+-- hs.hotkey.bind(hyper, 12, 'Lock system', function() hs.caffeinate.lockScreen() end)
+-- Sleep system
+-- hs.hotkey.bind(hyper, 'S', 'Put system to sleep',function() hs.caffeinate.systemSleep() end)
+
+-- Window Hints
+-- hs.hints.style = 'vimperator'
+-- hs.hotkey.bind(hyper, 'H', 'Show window hints', hs.hints.windowHints)
