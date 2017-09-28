@@ -5,7 +5,7 @@
 #       loading a plugin. '~' expansion is supported.
 #
 
-chunkc core::plugin_dir ~/.chunkwm_plugins
+chunkc core::plugin_dir /usr/local/opt/chunkwm/share/chunkwm/plugins/
 
 #
 # NOTE: if enabled, chunkwm will monitor the specified plugin_dir
@@ -107,3 +107,4 @@ chunkc tiling::rule --owner "Emacs.*" --state tile
 chunkc tiling::rule --owner "Slack.*" --state tile
 chunkc tiling::rule --owner "Outlook.*" --state float
 chunkc tiling::rule --owner "Postman.*" --state float
+chunkc tiling::rule --owner \"App Store\" --state float

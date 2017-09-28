@@ -38,15 +38,6 @@ nvm use 8 > /dev/null
 eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-function npm ()
-{
-    if [ "${PWD##/Users/dberrocal/Documents/ebay}" != "${PWD}" ]; then
-        command npm ${@}
-    else
-        command npm ${@}  --registry https://registry.npmjs.org/
-    fi;
-}
-
 function spt ()
 {
     cd ~/Documents/ebay/rctapp/
@@ -59,7 +50,7 @@ function highline ()
 {
     cd ~/Documents/ebay/highline-web/
     nvm use
-    rm -rf ~/Documents/ebay/highline-web/{.cache,.beans}
+    yarn run clean
     yarn start
 }
 
@@ -67,12 +58,5 @@ alias zk="kill -9 %1"
 
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dberrocal/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dberrocal/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dberrocal/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dberrocal/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 source "/Users/dberrocal/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
