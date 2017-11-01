@@ -19,9 +19,6 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.alias
 
-# get RIDE
-#source ~/Downloads/ride-5.1.2-mac64/env.sh
-
 source ~/.profile
 
 ######################################################################
@@ -35,7 +32,7 @@ nvm use 8 > /dev/null
 ######################### Python Environment  ########################
 ######################################################################
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
 function spt ()
@@ -48,7 +45,7 @@ function spt ()
 
 function highline ()
 {
-    cd ~/Documents/ebay/highline-web/
+    cd ~/ebay/highline-web/
     nvm use
     yarn run clean
     yarn start
