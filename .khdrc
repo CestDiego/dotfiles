@@ -2,7 +2,7 @@
 cmd + alt + ctrl - r : khd -e "reload"
 
 # open terminal, blazingly fast compared to iTerm/Hyper
-cmd + ctrl - return : open -na "/Applications/iTerm.app"
+cmd + ctrl - return : ~/bin/open_terminal
 
 # focus window
 alt - h : chunkc tiling::window --focus west
