@@ -1,3 +1,4 @@
+# -*- mode: conf -*-
 # reload config
 cmd + alt + ctrl - r : khd -e "reload"
 
