@@ -17,9 +17,9 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # eBay things
-export JAVA_HOME="/Users/dberrocal/Documents/Programs/ride-5.1.4-mac64/OracleJDK-1.7.0_45/Contents/Home"
+export JAVA_HOME="/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/OracleJDK-1.7.0_45/Contents/Home"
 
-export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.1.4-mac64/apache-maven-3.1.1/bin/"
-export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.1.4-mac64/apache-tomcat-7.0.64_4/bin/"
+export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/apache-maven-3.1.1/bin/"
+export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/apache-tomcat-7.0.64_4/bin/"
 
 export GTAGSLABEL=pygments
