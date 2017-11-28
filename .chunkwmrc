@@ -48,7 +48,7 @@ chunkc set bsp_split_ratio               0.5
 chunkc set window_focus_cycle            monitor
 chunkc set mouse_follows_focus           1
 chunkc set window_float_next             0
-chunkc set window_float_center           0
+chunkc set window_float_center           1
 chunkc set window_region_locked          1
 
 #
@@ -100,17 +100,24 @@ chunkc set wallpaper ~/dotfiles/wallpaper.jpg
 #       to pass value containing a whitespace.
 #
 
-chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner 1Password --state float
 
-chunkc tiling::rule --owner "Emacs.*" --except "^$" --state tile
-chunkc tiling::rule --owner "Slack.*" --state tile
-chunkc tiling::rule --owner "Outlook.*" --state float
+chunkc tiling::rule --owner "Emacs" --except "^$" --state tile
 chunkc tiling::rule --owner "Notes.*" --state float
 # chunkc tiling::rule --owner \"System Preferences\" --subrole AXStandardWindow --state float
 chunkc tiling::rule --owner "Reminders.*" --state float
 chunkc tiling::rule --owner "Postman.*" --state float
+chunkc tiling::rule --owner \"Microsoft Outlook\" --state float
 chunkc tiling::rule --owner \"Microsoft Outlook\" --name Reminder --state float
+
+chunkc tiling::rule --owner "Slack.*" --state tile
 chunkc tiling::rule --name \"Slack Call Minipanel\" --state float
+
+chunkc tiling::rule --name "chrome-devtools://devtools/bundled/inspector.html.*" --state float
+
+chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Tip of the Day\" --state float
+chunkc tiling::rule --owner \"IntelliJ IDEA\" --name "Preferences" --state float
+chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Browse JetBrains Plugins\" --state float
+chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Run/Debug Configurations\" --state float
 
 chunkc tiling::rule --owner Finder --name Copy --state float
