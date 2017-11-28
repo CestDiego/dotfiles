@@ -1,0 +1,117 @@
+" Integrate with system clipboard
+set clipboard=unnamedplus,unnamed
+set surround
+set showmode
+set history=1000
+
+inoremap jk <Esc>`^
+inoremap <C-g> <Esc>`^
+set timeout timeoutlen=1000 ttimeoutlen=100
+nnoremap <leader><leader> :action GotoAction<cr>
+
+let mapleader = " "
+
+" Jumping around
+nnoremap <c-;> $i:action AceJumpAction<CR>
+
+" Reload .ideavimrc
+nnoremap <leader>vs :source ~/.ideavimrc<CR>
+
+nnoremap <tab> %
+vnoremap <tab> %
+noremap Y y$
+
+" vnoremap S s
+" vnoremap s S
+
+nnoremap cwr :action RenameElement<cr>i
+
+nnoremap za :action CollapseBlock<cr>
+
+nmap <leader>fs :action SaveAll<cr>
+nmap <leader>ns :action GotoSymbol<cr>
+nmap <leader>pp :action SearchEverywhere<cr>
+nmap <leader>sp :action FindInPath<cr>
+nmap <leader>pf :action GotoFile<cr>
+nmap <leader>pc :action GotoClass<cr>
+nmap <leader>fr :action RecentFiles<CR>
+
+nmap <leader>nm :action FileStructurePopup<cr>
+nmap <leader>d :action ShowErrorDescription<cr>
+
+" Window Activities
+
+nnoremap <leader>wj <c-w>j
+nnoremap <leader>wk <c-w>k
+nnoremap <leader>wh <c-w>h
+nnoremap <leader>wl <c-w>l
+
+nnoremap <M-j> <c-w>j
+nnoremap <M-k> <c-w>k
+nnoremap <M-h> <c-w>h
+nnoremap <M-l> <c-w>l
+
+nmoremap <leader>wc <c-w>c
+nmoremap <leader>ww <c-w>w
+
+nmoremap <leader>ws <c-w>s
+nmoremap <leader>wv <c-w>v
+nmoremap <leader>w/ <c-w>s
+nmoremap <leader>w- <c-w>v
+
+nnoremap <space>q :action CloseContent<cr>
+nnoremap <space>Q :action ReopenClosedTab<cr>
+
+" built in search looks better
+nnoremap / :action Find<cr>
+
+" but preserve ideavim search
+nnoremap g/ /
+nnoremap gt :action GotoTest<cr>
+nnoremap gen :action GotoNextError<cr>
+nnoremap gep :action GotoPreviousError<cr>
+nnoremap gK :action GotoSuperMethod<cr>
+nnoremap gf :action GotoFile<cr>
+nnoremap gc :action GotoClass<cr>
+
+" built-in navigation to navigated items works better
+nnoremap <c-o> :action Back<cr>
+nnoremap <c-i> :action Forward<cr>
+" but preserve ideavim defaults
+nnoremap g<c-o> <c-o>
+nnoremap g<c-i> <c-i>
+
+" Debugging
+nnoremap gx :action ShowExecutionPoint<cr>
+nnoremap gj :action StepOver<cr>
+nnoremap gk :action StepOut<cr>
+nnoremap gl :action StepInto<cr>
+nnoremap gh :action ShowExecutionPoint<cr>
+nnoremap g> :action Resume<cr>
+" " debugger
+" nnoremap i :ForceStepInto
+" nnoremap o :ForceStepOver
+" nnoremap p :Stepout
+" nnoremap n :action ToggleLineBreakpoint<CR>
+" nnoremap m :action ToggleMethodBreakpoint<CR>
+" nnoremap <CR> :action Resume<CR>
+" nnoremap p :action ShowExecutionPoint<CR>
+
+
+nnoremap <leader>sp :action FindUsages<cr>
+nnoremap <leader>dr :action Resume<cr>
+
+
+nnoremap crv :action IntroduceVariable<cr>
+
+" Toggles
+nnoremap <leader>tw :action EditorToggleShowWhitespaces<cr>
+nnoremap <leader>tf :action ToggleDistractionFreeMode<cr>
+nnoremap <leader>tF :action TogglePresentationMode<cr>
+nnoremap <leader>tn :action EditorToggleShowLineNumbers<cr>
+nnoremap <leader>td :action ToggleLineBreakpoint<cr>
+nnoremap <leader>tD :action Debug<cr>
+
+
+nmap <leader>b :action Back<cr>
+nmap <leader>f :action Forward<cr>
