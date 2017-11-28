@@ -1,297 +1,317 @@
 
-* Base Packages                                                        :base:
-Let's begin with upgrading everything at the first boot
+* macOS
+** Install HomeBrew (package manager)
 
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get update
-sudo apt-get dist-upgrade -y
-#+end_src
+   #+BEGIN_SRC sh
+     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+   #+END_SRC
+** Spacemacs
+*** Install Emacs Plus (accepted emacs fork)
+    
+    #+BEGIN_SRC sh
+      brew install emacs-plus --with-no-title-bars
+    #+END_SRC
 
-Also for installing other .deb packages we use gdebi
+    Also don't forget to set the pixelwise setting in your config:
 
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get install gdebi -y
-#+end_src
+    #+BEGIN_SRC elisp
+      (setq frame-resize-pixelwise t)
+    #+END_SRC
 
-** Setting up Development  Environment
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get install build-essential -y
-#+end_src
+* Linux
+** Base Packages                                                       :base:
+   Let's begin with upgrading everything at the first boot
 
-* Tweak Tools                                                    :appearance:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get install unity-tweak-tool gnome-tweak-tool compizconfig-settings-manager -y
-#+end_src
-* SSH Setup                                                        :dev:base:
-** From Old Setup                                                  :dropbox:
-#+begin_src sh
-  ln -s $HOME/Dropbox/.ssh $HOME/.ssh
-#+end_src
+   #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get update
+ sudo apt-get dist-upgrade -y
+   #+end_src
 
-** From Scratch                                                    :scratch:
-*** Generate
-#+begin_src sh
-  ssh-keygen -t rsa -b 4096 -C "cestdiego@gmail.com"
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
-#+end_src
-*** Copy it
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install xclip
-#+end_src
+   Also for installing other .deb packages we use gdebi
 
-#+begin_src sh
-  xclip -sel clip < ~/.ssh/id_rsa.pub
-#+end_src
-*** Test
-#+begin_src sh
-  ssh -T git@github.com
-#+end_src
-* Git Setup                                                        :dev:base:
-** Installing                                                      :install:
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install git git-core -y
-#+end_src
+   #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install gdebi -y
+   #+end_src
 
-** Use Config from Dropbox                                         :dropbox:
-#+begin_src sh :results raw 
-  ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
-#+end_src
+*** Setting up Development  Environment
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install build-essential -y
+    #+end_src
 
-** Config From Scratch                                             :scratch:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get install xclip -y
-#+end_src
+** Tweak Tools                                                   :appearance:
+   #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install unity-tweak-tool gnome-tweak-tool compizconfig-settings-manager -y
+   #+end_src
+** SSH Setup                                                       :dev:base:
+*** From Old Setup                                                  :dropbox:
+    #+begin_src sh
+   ln -s $HOME/Dropbox/.ssh $HOME/.ssh
+    #+end_src
 
-#+begin_src sh
-ssh-keygen -t rsa -C "cestdiego@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-xclip -sel clip < ~/.ssh/id_rsa.pub
-#+end_src
+*** From Scratch                                                    :scratch:
+**** Generate
+     #+begin_src sh
+   ssh-keygen -t rsa -b 4096 -C "cestdiego@gmail.com"
+   eval "$(ssh-agent -s)"
+   ssh-add ~/.ssh/id_rsa
+     #+end_src
+**** Copy it
+     #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install xclip
+     #+end_src
 
-Go to [[https://github.com/settings/ssh][SSH Keys in GitHub]] and add your clipboard public key
+     #+begin_src sh
+   xclip -sel clip < ~/.ssh/id_rsa.pub
+     #+end_src
+**** Test
+     #+begin_src sh
+   ssh -T git@github.com
+     #+end_src
+** Git Setup                                                       :dev:base:
+*** Installing                                                      :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install git git-core -y
+    #+end_src
 
-Now configure your user
+*** Use Config from Dropbox                                         :dropbox:
+    #+begin_src sh :results raw
+   ln -s $HOME/Dropbox/.gitconfig $HOME/.gitconfig
+    #+end_src
 
-#+begin_src sh
-git config --global user.email "cestdiego@gmail.com" &&
-git config --global user.name  "Diego Berrocal"
-#+end_src
+*** Config From Scratch                                             :scratch:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install xclip -y
+    #+end_src
 
-* Numix Theme [[https://numixproject.org/][⛢]]                                                :appearance:
-*** Add PPA                                                           :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo add-apt-repository ppa:numix/ppa -y
-#+end_src
-*** Install                                                        :install:
-#+begin_src sh
-sudo apt-get install numix-gtk-theme numix-icon-theme-circle -y
-#+end_src
-* Imgur-screenshot                                                   :utils:
-* Variety [[http://peterlevi.com/variety/how-to-install/][⛢]]                                                      :appearance:
-*** Add PPA                                                           :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-# Variety
-sudo add-apt-repository ppa:peterlevi/ppa -y
-#+end_src
-*** Install                                                        :install:
-#+begin_src sh
-sudo apt-get install variety -y
-#+end_src
-*** Make it work with BSPWM 
-Install Feh
-#+begin_src sh
-sudo apt-get install feh
-#+end_src
+    #+begin_src sh
+ ssh-keygen -t rsa -C "cestdiego@gmail.com"
+ eval "$(ssh-agent -s)"
+ ssh-add ~/.ssh/id_rsa
+ xclip -sel clip < ~/.ssh/id_rsa.pub
+    #+end_src
 
-Make this change in ~/.config/variety/scripts/set_wallpaper
-#+begin_src sh
-# Feh - commented, as it may cause problems with Nautilus, (see bug https://bugs.launchpad.net/variety/+bug/1047083)
-feh --bg-scale "$WP" 2> /dev/null
-#+end_src
+    Go to [[https://github.com/settings/ssh][SSH Keys in GitHub]] and add your clipboard public key
 
-* Dropbox setup                                                     :dropbox:
-I save most of my configuration in my own dropbox
-#+begin_src sh 
-  wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.02.12_amd64.deb
-#+end_src
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo gdebi dropbox_* -y
-#+end_src
+    Now configure your user
 
-Obviously I have to remember to only sync certain folders.
-* Python                                                                :dev:
-** Installation                                                    :install:
-#+begin_src sh :results verbatim :dir /sudo:: 
-sudo apt-get install python-all python-dev python-pip
-#+end_src
+    #+begin_src sh
+ git config --global user.email "cestdiego@gmail.com" &&
+ git config --global user.name  "Diego Berrocal"
+    #+end_src
 
-** Setup                                                             :setup:
-#+begin_src sh
-pip install --user virtualenv virtualenvwrapper 
-pip install --user ansible youtube-dl jedi flake8
-#+end_src
+** Numix Theme [[https://numixproject.org/][⛢]]                                                 :appearance:
+**** Add PPA                                                            :ppa:
+     #+begin_src sh :results verbatim :dir /sudo::
+ sudo add-apt-repository ppa:numix/ppa -y
+     #+end_src
+**** Install                                                        :install:
+     #+begin_src sh
+ sudo apt-get install numix-gtk-theme numix-icon-theme-circle -y
+     #+end_src
+** Imgur-screenshot                                                   :utils:
+** Variety [[http://peterlevi.com/variety/how-to-install/][⛢]]                                                     :appearance:
+**** Add PPA                                                            :ppa:
+     #+begin_src sh :results verbatim :dir /sudo::
+ # Variety
+ sudo add-apt-repository ppa:peterlevi/ppa -y
+     #+end_src
+**** Install                                                        :install:
+     #+begin_src sh
+ sudo apt-get install variety -y
+     #+end_src
+**** Make it work with BSPWM
+     Install Feh
+     #+begin_src sh
+ sudo apt-get install feh
+     #+end_src
 
-* NodeJS                                                                :dev:
-** Install                                                         :install:
-#+begin_src sh :results verbatim :dir /sudo::
-  curl -sL https://deb.nodesource.com/setup | sudo bash -
-  sudo apt-get install nodejs
-#+end_src
+     Make this change in ~/.config/variety/scripts/set_wallpaper
+     #+begin_src sh
+ # Feh - commented, as it may cause problems with Nautilus, (see bug https://bugs.launchpad.net/variety/+bug/1047083)
+ feh --bg-scale "$WP" 2> /dev/null
+     #+end_src
 
-* Emacs [[http://ubuntuhandbook.org/index.php/2014/10/emacs-24-4-released-install-in-ubuntu-14-04/][⛢]]                                                           :dev:IDE:
-** Install                                                      :build:
-Get Dependencies
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get build-dep emacs24 -y
-#+end_src
+** Dropbox setup                                                    :dropbox:
+   I save most of my configuration in my own dropbox
+   #+begin_src sh
+   wget https://linux.dropbox.com/packages/ubuntu/dropbox_2015.02.12_amd64.deb
+   #+end_src
+   #+begin_src sh :results verbatim :dir /sudo::
+   sudo gdebi dropbox_* -y
+   #+end_src
 
-Get Source code
-#+begin_src sh
-  wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
-  tar -xf emacs-24.5.tar.*
-  cd emacs-24.5
-#+end_src
+   Obviously I have to remember to only sync certain folders.
+** Python                                                               :dev:
+*** Installation                                                    :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install python-all python-dev python-pip
+    #+end_src
 
-Build it
-#+begin_src sh
-  ./configure
-  make
-#+end_src
+*** Setup                                                             :setup:
+    #+begin_src sh
+ pip install --user virtualenv virtualenvwrapper
+ pip install --user ansible youtube-dl jedi flake8
+    #+end_src
 
-Install it
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo make install
-#+end_src
-** Hunspell and Ispell for Emacs
-*** Install hunspell
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install hunspell hunspell-en-us hunspell-eu-es -y
-#+end_src
+** NodeJS                                                               :dev:
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+   curl -sL https://deb.nodesource.com/setup | sudo bash -
+   sudo apt-get install nodejs
+    #+end_src
 
-*** Link The english and spanish stuff
-#+begin_src sh :results verbatim :dir /sudo::
-sudo cp /usr/share/hunspell/en_US.aff /usr/share/hunspell/english.aff &&
-sudo cp /usr/share/hunspell/en_US.dic /usr/share/hunspell/english.dic &&
-sudo cp /usr/share/hunspell/eu_ES.aff /usr/share/hunspell/castellano.aff &&
-sudo cp /usr/share/hunspell/eu_ES.dic /usr/share/hunspell/castellano.dic
-#+end_src
+** Emacs [[http://ubuntuhandbook.org/index.php/2014/10/emacs-24-4-released-install-in-ubuntu-14-04/][⛢]]                                                          :dev:IDE:
+*** Install                                                           :build:
+    Get Dependencies
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get build-dep emacs24 -y
+    #+end_src
+
+    Get Source code
+    #+begin_src sh
+   wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
+   tar -xf emacs-24.5.tar.*
+   cd emacs-24.5
+    #+end_src
+
+    Build it
+    #+begin_src sh
+   ./configure
+   make
+    #+end_src
+
+    Install it
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo make install
+    #+end_src
+*** Hunspell and Ispell for Emacs
+**** Install hunspell
+     #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install hunspell hunspell-en-us hunspell-eu-es -y
+     #+end_src
+
+**** Link The english and spanish stuff
+     #+begin_src sh :results verbatim :dir /sudo::
+ sudo cp /usr/share/hunspell/en_US.aff /usr/share/hunspell/english.aff &&
+ sudo cp /usr/share/hunspell/en_US.dic /usr/share/hunspell/english.dic &&
+ sudo cp /usr/share/hunspell/eu_ES.aff /usr/share/hunspell/castellano.aff &&
+ sudo cp /usr/share/hunspell/eu_ES.dic /usr/share/hunspell/castellano.dic
+     #+end_src
 
 
-** Pandoc                                                              :dev:
-#+begin_src sh
-  wget https://github.com/jgm/pandoc/releases/download/1.13.2/pandoc-1.13.2-1-amd64.deb
-#+end_src
+*** Pandoc                                                              :dev:
+    #+begin_src sh
+   wget https://github.com/jgm/pandoc/releases/download/1.13.2/pandoc-1.13.2-1-amd64.deb
+    #+end_src
 
-#+begin_src sh :results verbatim :dir /sudo::/home/io/
-  sudo gdebi pandoc-1.13.2-1.amd64.deb
-#+end_src
+    #+begin_src sh :results verbatim :dir /sudo::/home/io/
+   sudo gdebi pandoc-1.13.2-1.amd64.deb
+    #+end_src
 
-* Asciinema [[https://asciinema.org/docs/installation][⛢]]                                                       :utils:
-Utility that lets me record any terminal at any time
-** Add PPA                                                           :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-add-repository ppa:zanchey/asciinema -y
-#+end_src
-** Install                                                       :install:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get update
-sudo apt-get install asciinema -y
-#+end_src
-** Setup
-#+begin_src sh
-asciinema auth
-#+end_src
+** Asciinema [[https://asciinema.org/docs/installation][⛢]]                                                        :utils:
+   Utility that lets me record any terminal at any time
+*** Add PPA                                                             :ppa:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-add-repository ppa:zanchey/asciinema -y
+    #+end_src
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get update
+ sudo apt-get install asciinema -y
+    #+end_src
+*** Setup
+    #+begin_src sh
+ asciinema auth
+    #+end_src
 
-* Java [[http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html][⛢]]                                                          :dev:
-** Add PPA                                                             :ppa:
+** Java [[http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html][⛢]]                                                               :dev:
+*** Add PPA                                                             :ppa:
 
-#+begin_src sh :results verbatim :dir /sudo::
-sudo add-apt-repository ppa:webupd8team/java -y
-#+end_src
-** Install                                                         :install:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get install oracle-java7-installer
-#+end_src
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo add-apt-repository ppa:webupd8team/java -y
+    #+end_src
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get install oracle-java7-installer
+    #+end_src
 
-* Android Studio
-** Dependencies
-#+begin_src sh :results verbatim :dir /sudo::
-nsudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6
-#+end_src
-* Spotify [[https://www.spotify.com/pe/download/previews/][⛢]]                                                      :media:
-** Add PPA                                                             :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free" &&
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 &&
-#+end_src
-** Install                                                         :install:
-#+begin_src sh :results verbatim :dir /sudo::
-sudo apt-get update -qq &&
-sudo apt-get install spotify-client
-#+end_src
+** Android Studio
+*** Dependencies
+    #+begin_src sh :results verbatim :dir /sudo::
+ nsudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6
+    #+end_src
+** Spotify [[https://www.spotify.com/pe/download/previews/][⛢]]                                                          :media:
+*** Add PPA                                                             :ppa:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-add-repository -y "deb http://repository.spotify.com stable non-free" &&
+ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 &&
+    #+end_src
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo apt-get update -qq &&
+ sudo apt-get install spotify-client
+    #+end_src
 
-* LaTeX [[http://www.reddit.com/r/latex/][⛢]]                                                         :work:
-** Install                                                        :install:
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install texlive-full
-#+end_src
+** LaTeX [[http://www.reddit.com/r/latex/][⛢]]                                                             :work:
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install texlive-full
+    #+end_src
 
-* VMWare [[Install ][⛢]]                                               :dev:virtualization:
-** Grab Installer [[Install ][⛢]]
-** Enter the following License Key 
-Hint: These are ROT13'd
-#+begin_src sh
-  PI512-SNJ91-085AC-QZKDK-DYUNS
-  NN7QH-NCJ15-U848D-C5MTM-CPEP2
-  IH1A2-6QR5A-Z8QYD-NRZRI-KN2M4
-  HI3AE-NZM17-08RMC-9LDDR-ZMNL8
-  TP75H-21R50-Z8Q5D-X6LDK-J28I8
-#+end_src
+** VMWare [[Install ][⛢]]                                              :dev:virtualization:
+*** Grab Installer [[Install ][⛢]]
+*** Enter the following License Key
+    Hint: These are ROT13'd
+    #+begin_src sh
+   PI512-SNJ91-085AC-QZKDK-DYUNS
+   NN7QH-NCJ15-U848D-C5MTM-CPEP2
+   IH1A2-6QR5A-Z8QYD-NRZRI-KN2M4
+   HI3AE-NZM17-08RMC-9LDDR-ZMNL8
+   TP75H-21R50-Z8Q5D-X6LDK-J28I8
+    #+end_src
 
-** Enable 3D Acceleration [[http://askubuntu.com/questions/512762/vmware-3d-acceleration-ubuntu-14-04][⛢]]
-Enable it in the .vmware preference file
+*** Enable 3D Acceleration [[http://askubuntu.com/questions/512762/vmware-3d-acceleration-ubuntu-14-04][⛢]]
+    Enable it in the .vmware preference file
 
-#+begin_src sh
-emacs ~/.vmware/preferences
-# Edit mks.gl.allowBlacklistedDrivers = FALSE
-# set to False
-#+end_src
-* SimpleScreenRecorder                                                :utils:
-** Add PPA                                                             :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-  # SimpleScreenRecorder
-  sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
-#+end_src
+    #+begin_src sh
+ emacs ~/.vmware/preferences
+ # Edit mks.gl.allowBlacklistedDrivers = FALSE
+ # set to False
+    #+end_src
+** SimpleScreenRecorder                                               :utils:
+*** Add PPA                                                             :ppa:
+    #+begin_src sh :results verbatim :dir /sudo::
+   # SimpleScreenRecorder
+   sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y
+    #+end_src
 
-** Install                                                         :install:
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install simplescreenrecorder -y
-  # if you want to record 32-bit OpenGL applications on a 64-bit system:
-  sudo apt-get install simplescreenrecorder-lib:i386 -y
-#+end_src
+*** Install                                                         :install:
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install simplescreenrecorder -y
+   # if you want to record 32-bit OpenGL applications on a 64-bit system:
+   sudo apt-get install simplescreenrecorder-lib:i386 -y
+    #+end_src
 
-* GIF Recording                                                 :media:utils:
-** Install xrectsel
-#+begin_src sh
-git clone https://github.com/lolilolicon/xrectsel
-cd xrectsel
-./bootstrap
-./configure
-make
-#+end_src
-#+begin_src sh :results verbatim :dir /sudo::
-sudo make install
-#+end_src
+** GIF Recording                                                :media:utils:
+*** Install xrectsel
+    #+begin_src sh
+ git clone https://github.com/lolilolicon/xrectsel
+ cd xrectsel
+ ./bootstrap
+ ./configure
+ make
+    #+end_src
+    #+begin_src sh :results verbatim :dir /sudo::
+ sudo make install
+    #+end_src
 
-** Add PPA                                                             :ppa:
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo add-apt-repository ppa:fossfreedom/byzanz
-#+end_src
+*** Add PPA                                                             :ppa:
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo add-apt-repository ppa:fossfreedom/byzanz
+    #+end_src
 
-** Install                                                         :install:
+*** Install                                                         :install:
 
-#+begin_src sh :results verbatim :dir /sudo::
-  sudo apt-get install xdotool byzanz
-#+end_src
+    #+begin_src sh :results verbatim :dir /sudo::
+   sudo apt-get install xdotool byzanz
+    #+end_src
