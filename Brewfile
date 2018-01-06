@@ -1,3 +1,4 @@
+cask_args appdir: "/Applications"
 tap "crisidev/chunkwm"
 tap "homebrew/core"
 tap "homebrew/bundle"
