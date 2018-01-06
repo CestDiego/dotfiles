@@ -2,7 +2,7 @@ export DEFAULT_USER="dberrocal"
 export USER_NAME="Diego Berrocal"
 
 ########################## Using NVM ##########################
-export NVM_DIR="/usr/local/opt/nvm"
+export NVM_DIR="$HOME/.nvm"
 
 ########################## Using PyEnv ##########################
 export PYENV_ROOT="$HOME/.pyenv"
