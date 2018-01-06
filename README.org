@@ -1,19 +1,48 @@
 
 * macOS
-** Install HomeBrew (package manager)
 
-   #+BEGIN_SRC sh
+** Install XCode
+
+   #+BEGIN_SRC sh :tangle osx.sh
+     xcode-select --install
+   #+END_SRC
+** Install homebrew, cask and mac store dependencies
+   #+BEGIN_SRC sh :tangle osx.sh
      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+     brew bundle
+   #+END_SRC
+
+** Download dotfiles and link them
+   #+BEGIN_SRC sh :tangle osx.sh
+     cd ~
+     git clone git@github.com:CestDiego/dotfiles.git
+     ln -s ~/dotfiles/.chunkwmrc ~/.chunkwmrc
+     ln -s ~/dotfiles/.khdrc ~/.khdrc
+     ln -s ~/dotfiles/.profile ~/.profile
+     ln -s ~/dotfiles/.zprofile ~/.zprofile
+     ln -s ~/dotfiles/.zshrc ~/.zshrc
+     ln -s ~/dotfiles/.alias ~/.alias
+     ln -s ~/dotfiles/.ideavimrc ~/.ideavimrc
+     ln -s ~/dotfiles/.hammerspoon ~/.hammerspoon
+     ln -s ~/dotfiles/bin/ ~/bin/
+   #+END_SRC
+
+** Set ZSH
+   #+BEGIN_SRC sh :tangle osx.sh
+     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+   #+END_SRC
+
+** Set NVM
+   #+BEGIN_SRC sh :tangle osx.sh
+     curl -o- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
    #+END_SRC
 ** Spacemacs
-*** Install Emacs Plus (accepted emacs fork)
-    
-    #+BEGIN_SRC sh
-      brew install emacs-plus --with-no-title-bars
-    #+END_SRC
-
-    Also don't forget to set the pixelwise setting in your config:
-
+   #+BEGIN_SRC sh :tangle osx.sh
+     git clone git@github.com:CestDiego/spacemacs_conf.git ~/.spacemacs.d
+     rm -rf ~/.emacs.d
+     git clone git@github.com:syl20bnr/spacemacs ~/.emacs.d
+     emacs
+   #+END_SRC
     #+BEGIN_SRC elisp
       (setq frame-resize-pixelwise t)
     #+END_SRC
