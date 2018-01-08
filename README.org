@@ -38,11 +38,14 @@
    #+END_SRC
 ** Spacemacs
    #+BEGIN_SRC sh :tangle osx.sh
+     brew linkapps emacs-plus
      git clone git@github.com:CestDiego/spacemacs_conf.git ~/.spacemacs.d
      rm -rf ~/.emacs.d
      git clone git@github.com:syl20bnr/spacemacs ~/.emacs.d
-     emacs
+     # Disable nap mode for Emacs, otherwise requests will be very slow when Emacs enters nap mode:
+     defaults write org.gnu.Emacs NSAppSleepDisabled -bool YES
    #+END_SRC
+
     #+BEGIN_SRC elisp
       (setq frame-resize-pixelwise t)
     #+END_SRC
