@@ -13,3 +13,4 @@ brew "crisidev/chunkwm/chunkwm"
 brew "d12frosted/emacs-plus/emacs-plus", args: ["with-no-title-bars"]
 brew "koekeishiya/formulae/khd"
 cask "karabiner-elements"
+cask "licecap"
