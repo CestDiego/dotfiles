@@ -113,12 +113,12 @@ chunkc tiling::rule --owner \"Microsoft Outlook\" --name Reminder --state float
 chunkc tiling::rule --owner "Slack.*" --state tile
 chunkc tiling::rule --name \"Slack Call Minipanel\" --state float
 
-chunkc tiling::rule --name "chrome-devtools://devtools/bundled/inspector.html.*" --state float
-
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Tip of the Day\" --state float
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name "Preferences" --state float
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Browse JetBrains Plugins\" --state float
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Run/Debug Configurations\" --state float
 
 chunkc tiling::rule --owner Finder --name Copy --state float
-chunkc tiling::rule --owner licecap --name Copy --state float
+chunkc tiling::rule --owner Zeplin --name "Pop Out.*" --state float
+chunkc tiling::rule --owner \"Archive Utility\" --state float
+chunkc tiling::rule --owner licecap --state float
