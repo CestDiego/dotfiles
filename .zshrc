@@ -37,7 +37,7 @@ nvm use 8 > /dev/null
 
 function spt ()
 {
-    cd ~/Documents/ebay/rctapp/
+    cd ~/Documents/eBay/rctapp/
     nvm use
     rm -rf ~/Documents/ebay/rctapp/{.cache,.beans}
     PORT=8003 SSLPORT=8083 grunt start-server
@@ -45,7 +45,7 @@ function spt ()
 
 function highline ()
 {
-    cd ~/ebay/highline-web/
+    cd ~/Documents/eBay/highline-web/
     nvm use
     yarn run clean
     yarn start
