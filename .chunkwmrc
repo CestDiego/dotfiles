@@ -103,6 +103,7 @@ chunkc set wallpaper ~/dotfiles/wallpaper.jpg
 chunkc tiling::rule --owner 1Password --state float
 
 chunkc tiling::rule --owner "Emacs" --except "^$" --state tile
+chunkc tiling::rule --owner "Emacs" --name "Helm.*" --state float
 chunkc tiling::rule --owner "Notes.*" --state float
 # chunkc tiling::rule --owner \"System Preferences\" --subrole AXStandardWindow --state float
 chunkc tiling::rule --owner "Reminders.*" --state float
