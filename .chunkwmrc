@@ -109,7 +109,6 @@ chunkc tiling::rule --owner "Notes.*" --state float
 chunkc tiling::rule --owner "Reminders.*" --state float
 chunkc tiling::rule --owner "Postman.*" --state float
 chunkc tiling::rule --owner \"Microsoft Outlook\" --state float
-chunkc tiling::rule --owner \"Microsoft Outlook\" --name Reminder --state float
 
 chunkc tiling::rule --owner "Slack.*" --state tile
 chunkc tiling::rule --name \"Slack Call Minipanel\" --state float
