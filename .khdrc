@@ -67,6 +67,12 @@ ctrl + alt - c  : chunkc tiling::monitor -f next
 ctrl + alt - 1  : chunkc tiling::monitor -f 1
 ctrl + alt - 2  : chunkc tiling::monitor -f 2
 ctrl + alt - 3  : chunkc tiling::monitor -f 3
+ctrl + alt - 4  : chunkc tiling::monitor -f 4
+ctrl + alt - 5  : chunkc tiling::monitor -f 5
+ctrl + alt - 6  : chunkc tiling::monitor -f 6
+ctrl + alt - 4  : chunkc tiling::monitor -f 4
+ctrl + alt - 5  : chunkc tiling::monitor -f 5
+ctrl + alt - 6  : chunkc tiling::monitor -f 6
 
 # send window to monitor and follow focus
 ctrl + cmd - z  : chunkc tiling::window --send-to-monitor prev; chunkc tiling::monitor -f prev
@@ -74,6 +80,12 @@ ctrl + cmd - c  : chunkc tiling::window --send-to-monitor next; chunkc tiling::m
 ctrl + alt + cmd - 1  : chunkc tiling::window --send-to-monitor 1; chunkc tiling::monitor -f 1
 ctrl + alt + cmd - 2  : chunkc tiling::window --send-to-monitor 2; chunkc tiling::monitor -f 2
 ctrl + alt + cmd - 3  : chunkc tiling::window --send-to-monitor 3; chunkc tiling::monitor -f 3
+ctrl + alt + cmd - 4  : chunkc tiling::window --send-to-monitor 4; chunkc tiling::monitor -f 4
+ctrl + alt + cmd - 5  : chunkc tiling::window --send-to-monitor 5; chunkc tiling::monitor -f 5
+ctrl + alt + cmd - 6  : chunkc tiling::window --send-to-monitor 6; chunkc tiling::monitor -f 6
+ctrl + alt + cmd - 7  : chunkc tiling::window --send-to-monitor 7; chunkc tiling::monitor -f 7
+ctrl + alt + cmd - 8  : chunkc tiling::window --send-to-monitor 8; chunkc tiling::monitor -f 8
+ctrl + alt + cmd - 9  : chunkc tiling::window --send-to-monitor 9; chunkc tiling::monitor -f 9
 
 # increase region size
 shift + alt - a : chunkc tiling::window --use-temporary-ratio 0.1 --adjust-window-edge west
