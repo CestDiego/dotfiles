@@ -118,6 +118,7 @@ chunkc tiling::rule --owner \"IntelliJ IDEA\" --name "Preferences" --state float
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Browse JetBrains Plugins\" --state float
 chunkc tiling::rule --owner \"IntelliJ IDEA\" --name \"Run/Debug Configurations\" --state float
 
+chunkc tiling::rule --owner Finder --state float
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner Zeplin --name "Pop Out.*" --state float
 chunkc tiling::rule --owner \"Archive Utility\" --state float
