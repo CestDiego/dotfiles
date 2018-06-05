@@ -57,3 +57,6 @@ function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
 
 source "/Users/dberrocal/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
