@@ -43,6 +43,52 @@ function spt ()
     PORT=8003 SSLPORT=8083 grunt start-server
 }
 
+function server-ghfe()
+{
+    if [ -e /tmp/highline.pid ]
+    then
+        kill -9 `cat /tmp/highline.pid`
+	echo "Killed Zombie HighLine"
+    fi
+
+    if [ -e /tmp/ghfe.pid ]
+    then
+        kill -9 `cat /tmp/ghfe.pid`
+	echo "Killed Zombie GHFE"
+    fi
+
+    sleep 2
+
+    cd ~/Documents/eBay/
+    (
+        cd highline-web;
+        yarn clean &> /dev/null;
+        if [ "$1" == "--debug" ];
+        then
+        echo "Starting HighLine with debugger"
+        node --inspect=9223 index.js &> /tmp/highline.log &
+        else
+        echo "Starting HighLine"
+        node index.js &> /tmp/highline.log &
+        fi
+        echo $! > /tmp/highline.pid
+    )
+
+    (
+        cd GlobalHeaderFrontEnd;
+        yarn clean &> /dev/null;
+        if [ "$1" == "--debug" ];
+        then
+        echo " Starting GHFE with debugger"
+        PORT=8083 SSLPORT=8444 node --inspect=9224 index.js &> /tmp/ghfe.log &
+        else
+        echo " Starting GHFE"
+        PORT=8083 SSLPORT=8444 node index.js &> /tmp/ghfe.log &
+        fi
+        echo $! > /tmp/ghfe.pid
+    )
+}
+
 function highline ()
 {
     cd ~/Documents/eBay/highline-web/
