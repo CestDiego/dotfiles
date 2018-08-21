@@ -79,7 +79,7 @@ function server-ghfe()
         yarn clean &> /dev/null;
         if [ "$1" == "--debug" ];
         then
-        echo " Starting GHFE with debugger"
+        echo "Starting GHFE with debugger"
         PORT=8083 SSLPORT=8444 node --inspect=9224 index.js &> /tmp/ghfe.log &
         else
         echo " Starting GHFE"
