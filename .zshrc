@@ -25,15 +25,19 @@ source ~/.profile
 ######################### Node Version Manager #######################
 ######################################################################
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-# export JAVA_HOME=/Users/dberrocal/Downloads/ride-5.1.2-mac64/OpenJDK-1.7.0_45/Contents/Home
 
-nvm use 8 > /dev/null
+nvm use $MY_NODE_VERSION > /dev/null
 ######################################################################
 ######################### Python Environment  ########################
 ######################################################################
 
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+
+######################################################################
+######################### Ruby Environment  ########################
+######################################################################
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 function spt ()
 {
@@ -103,6 +107,3 @@ function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
 
 source "/Users/dberrocal/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

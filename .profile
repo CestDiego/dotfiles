@@ -3,9 +3,12 @@ export USER_NAME="Diego Berrocal"
 
 ########################## Using NVM ##########################
 export NVM_DIR="$HOME/.nvm"
+export MY_NODE_VERSION=8.11.3
 
 ########################## Using PyEnv ##########################
 export PYENV_ROOT="$HOME/.pyenv"
+export MY_PYTHON_VERSION=2.7.6
+
 if [ -d "$PYENV_ROOT" ] ; then
     export PATH="$PYENV_ROOT/bin:$PATH"
 fi
@@ -16,15 +19,5 @@ if [ -d "$HOME/bin" ] ; then
     export PATH="$HOME/bin:$PATH"
 fi
 
-# eBay things
-export JAVA_HOME="/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/OracleJDK-1.7.0_45/Contents/Home"
-
-export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/apache-maven-3.1.1/bin/"
-export PATH="$PATH:/Users/dberrocal/Documents/Programs/ride-5.2.3-mac64/apache-tomcat-7.0.64_4/bin/"
-
-export GTAGSLABEL=pygments
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
