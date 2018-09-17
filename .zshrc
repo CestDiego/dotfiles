@@ -106,4 +106,6 @@ alias zk="kill -9 %1"
 function f() { find . -iname "*$1*" ${@:2} }
 function r() { grep "$1" ${@:2} -R . }
 
-source "/Users/dberrocal/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship

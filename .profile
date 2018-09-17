@@ -3,7 +3,7 @@ export USER_NAME="Diego Berrocal"
 
 ########################## Using NVM ##########################
 export NVM_DIR="$HOME/.nvm"
-export MY_NODE_VERSION=8.11.3
+export MY_NODE_VERSION=8.11.4
 
 ########################## Using PyEnv ##########################
 export PYENV_ROOT="$HOME/.pyenv"
@@ -21,3 +21,6 @@ fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
